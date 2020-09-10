@@ -1,0 +1,550 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5DAA3B2E25010213009F3E5B /* Purchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAA3B2D25010213009F3E5B /* Purchase.swift */; };
+		5DC666C424FD096A00B15C8B /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC666C324FD096A00B15C8B /* UserInfo.swift */; };
+		5DDFE19C24FD41FA008C055A /* CreateAccountDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDFE19B24FD41FA008C055A /* CreateAccountDetail.swift */; };
+		5DDFE19E24FD4B33008C055A /* UserInfoUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDFE19D24FD4B33008C055A /* UserInfoUpdate.swift */; };
+		5DDFE1A124FDE5A1008C055A /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDFE1A024FDE5A1008C055A /* Test.swift */; };
+		5DF5404024F10D8E00B63028 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF5403F24F10D8E00B63028 /* AppDelegate.swift */; };
+		5DF5404224F10D8E00B63028 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF5404124F10D8E00B63028 /* SceneDelegate.swift */; };
+		5DF5404524F10D8E00B63028 /* refriger_management_project.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5DF5404324F10D8E00B63028 /* refriger_management_project.xcdatamodeld */; };
+		5DF5404724F10D8E00B63028 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF5404624F10D8E00B63028 /* ContentView.swift */; };
+		5DF5404924F10D9000B63028 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DF5404824F10D9000B63028 /* Assets.xcassets */; };
+		5DF5404C24F10D9000B63028 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DF5404B24F10D9000B63028 /* Preview Assets.xcassets */; };
+		5DF5404F24F10D9000B63028 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DF5404D24F10D9000B63028 /* LaunchScreen.storyboard */; };
+		5DF5405924F10EB500B63028 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5DF5405824F10EB500B63028 /* GoogleService-Info.plist */; };
+		5DF5405D24F1154800B63028 /* MartHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF5405C24F1154800B63028 /* MartHome.swift */; };
+		5DF5405F24F1155600B63028 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF5405E24F1155600B63028 /* Menu.swift */; };
+		5DF5406224F1158100B63028 /* FoodDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF5406124F1158100B63028 /* FoodDetail.swift */; };
+		5DF5406424F1158C00B63028 /* FoodList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF5406324F1158C00B63028 /* FoodList.swift */; };
+		5DF5406624F1159F00B63028 /* MartFoodData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF5406524F1159F00B63028 /* MartFoodData.swift */; };
+		5DF5406824F117FB00B63028 /* RefrigerData.json in Resources */ = {isa = PBXBuildFile; fileRef = 5DF5406724F117FB00B63028 /* RefrigerData.json */; };
+		5DF5406B24F119E100B63028 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF5406A24F119E100B63028 /* Login.swift */; };
+		5DF5406D24F119EF00B63028 /* CreateAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF5406C24F119EF00B63028 /* CreateAccount.swift */; };
+		5DF5406F24F119F900B63028 /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF5406E24F119F900B63028 /* Cart.swift */; };
+		5DF5407624F5A58E00B63028 /* AccountCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF5407524F5A58E00B63028 /* AccountCheck.swift */; };
+		CD86EDE3CC65EB38478DBE19 /* Pods_refriger_management_project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89D25FE82CE32A598A55DDAE /* Pods_refriger_management_project.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		30032DF1EB4ED2BE3E8FAAC3 /* Pods-refriger-management-project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-refriger-management-project.debug.xcconfig"; path = "Target Support Files/Pods-refriger-management-project/Pods-refriger-management-project.debug.xcconfig"; sourceTree = "<group>"; };
+		5DAA3B2D25010213009F3E5B /* Purchase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Purchase.swift; sourceTree = "<group>"; };
+		5DC666C324FD096A00B15C8B /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		5DDFE19B24FD41FA008C055A /* CreateAccountDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountDetail.swift; sourceTree = "<group>"; };
+		5DDFE19D24FD4B33008C055A /* UserInfoUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoUpdate.swift; sourceTree = "<group>"; };
+		5DDFE1A024FDE5A1008C055A /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
+		5DF5403C24F10D8E00B63028 /* refriger-management-project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "refriger-management-project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5DF5403F24F10D8E00B63028 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		5DF5404124F10D8E00B63028 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		5DF5404424F10D8E00B63028 /* refriger_management_project.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = refriger_management_project.xcdatamodel; sourceTree = "<group>"; };
+		5DF5404624F10D8E00B63028 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		5DF5404824F10D9000B63028 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5DF5404B24F10D9000B63028 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		5DF5404E24F10D9000B63028 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5DF5405024F10D9000B63028 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5DF5405824F10EB500B63028 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		5DF5405C24F1154800B63028 /* MartHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MartHome.swift; sourceTree = "<group>"; };
+		5DF5405E24F1155600B63028 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
+		5DF5406124F1158100B63028 /* FoodDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetail.swift; sourceTree = "<group>"; };
+		5DF5406324F1158C00B63028 /* FoodList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodList.swift; sourceTree = "<group>"; };
+		5DF5406524F1159F00B63028 /* MartFoodData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MartFoodData.swift; sourceTree = "<group>"; };
+		5DF5406724F117FB00B63028 /* RefrigerData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = RefrigerData.json; path = ../../../../../../RefrigerData.json; sourceTree = "<group>"; };
+		5DF5406A24F119E100B63028 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		5DF5406C24F119EF00B63028 /* CreateAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccount.swift; sourceTree = "<group>"; };
+		5DF5406E24F119F900B63028 /* Cart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
+		5DF5407524F5A58E00B63028 /* AccountCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCheck.swift; sourceTree = "<group>"; };
+		793048D7B14C511180979586 /* Pods-refriger-management-project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-refriger-management-project.release.xcconfig"; path = "Target Support Files/Pods-refriger-management-project/Pods-refriger-management-project.release.xcconfig"; sourceTree = "<group>"; };
+		89D25FE82CE32A598A55DDAE /* Pods_refriger_management_project.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_refriger_management_project.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5DF5403924F10D8E00B63028 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD86EDE3CC65EB38478DBE19 /* Pods_refriger_management_project.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1C68D0714E6CF8D57DC39939 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				89D25FE82CE32A598A55DDAE /* Pods_refriger_management_project.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5DDFE19F24FDE09D008C055A /* FoodManagement */ = {
+			isa = PBXGroup;
+			children = (
+				5DDFE1A024FDE5A1008C055A /* Test.swift */,
+			);
+			path = FoodManagement;
+			sourceTree = "<group>";
+		};
+		5DF5403324F10D8E00B63028 = {
+			isa = PBXGroup;
+			children = (
+				5DF5403E24F10D8E00B63028 /* refriger-management-project */,
+				5DF5403D24F10D8E00B63028 /* Products */,
+				6412AF62EBE28947F3356DA8 /* Pods */,
+				1C68D0714E6CF8D57DC39939 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		5DF5403D24F10D8E00B63028 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5DF5403C24F10D8E00B63028 /* refriger-management-project.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5DF5403E24F10D8E00B63028 /* refriger-management-project */ = {
+			isa = PBXGroup;
+			children = (
+				5DF5403F24F10D8E00B63028 /* AppDelegate.swift */,
+				5DF5404124F10D8E00B63028 /* SceneDelegate.swift */,
+				5DF5404624F10D8E00B63028 /* ContentView.swift */,
+				5DDFE19F24FDE09D008C055A /* FoodManagement */,
+				5DF5405A24F1151A00B63028 /* MartView */,
+				5DF5407424F5A54900B63028 /* MartAccount */,
+				5DF5404824F10D9000B63028 /* Assets.xcassets */,
+				5DF5404D24F10D9000B63028 /* LaunchScreen.storyboard */,
+				5DF5405024F10D9000B63028 /* Info.plist */,
+				5DF5405824F10EB500B63028 /* GoogleService-Info.plist */,
+				5DF5404324F10D8E00B63028 /* refriger_management_project.xcdatamodeld */,
+				5DF5404A24F10D9000B63028 /* Preview Content */,
+			);
+			path = "refriger-management-project";
+			sourceTree = "<group>";
+		};
+		5DF5404A24F10D9000B63028 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				5DF5404B24F10D9000B63028 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		5DF5405A24F1151A00B63028 /* MartView */ = {
+			isa = PBXGroup;
+			children = (
+				5DF5406924F1190C00B63028 /* Customer */,
+				5DF5405B24F1153100B63028 /* Model */,
+				5DF5406024F1155B00B63028 /* Food */,
+				5DF5405C24F1154800B63028 /* MartHome.swift */,
+				5DF5405E24F1155600B63028 /* Menu.swift */,
+			);
+			path = MartView;
+			sourceTree = "<group>";
+		};
+		5DF5405B24F1153100B63028 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5DF5406724F117FB00B63028 /* RefrigerData.json */,
+				5DF5406524F1159F00B63028 /* MartFoodData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5DF5406024F1155B00B63028 /* Food */ = {
+			isa = PBXGroup;
+			children = (
+				5DF5406124F1158100B63028 /* FoodDetail.swift */,
+				5DF5406324F1158C00B63028 /* FoodList.swift */,
+			);
+			path = Food;
+			sourceTree = "<group>";
+		};
+		5DF5406924F1190C00B63028 /* Customer */ = {
+			isa = PBXGroup;
+			children = (
+				5DF5406A24F119E100B63028 /* Login.swift */,
+				5DF5406C24F119EF00B63028 /* CreateAccount.swift */,
+				5DDFE19B24FD41FA008C055A /* CreateAccountDetail.swift */,
+				5DC666C324FD096A00B15C8B /* UserInfo.swift */,
+				5DDFE19D24FD4B33008C055A /* UserInfoUpdate.swift */,
+				5DF5406E24F119F900B63028 /* Cart.swift */,
+				5DAA3B2D25010213009F3E5B /* Purchase.swift */,
+			);
+			path = Customer;
+			sourceTree = "<group>";
+		};
+		5DF5407424F5A54900B63028 /* MartAccount */ = {
+			isa = PBXGroup;
+			children = (
+				5DF5407524F5A58E00B63028 /* AccountCheck.swift */,
+			);
+			path = MartAccount;
+			sourceTree = "<group>";
+		};
+		6412AF62EBE28947F3356DA8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				30032DF1EB4ED2BE3E8FAAC3 /* Pods-refriger-management-project.debug.xcconfig */,
+				793048D7B14C511180979586 /* Pods-refriger-management-project.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5DF5403B24F10D8E00B63028 /* refriger-management-project */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5DF5405324F10D9000B63028 /* Build configuration list for PBXNativeTarget "refriger-management-project" */;
+			buildPhases = (
+				4F683119430377C7BAB0F765 /* [CP] Check Pods Manifest.lock */,
+				5DF5403824F10D8E00B63028 /* Sources */,
+				5DF5403924F10D8E00B63028 /* Frameworks */,
+				5DF5403A24F10D8E00B63028 /* Resources */,
+				F31BC936A9F601EDAD96E4CB /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "refriger-management-project";
+			productName = "refriger-management-project";
+			productReference = 5DF5403C24F10D8E00B63028 /* refriger-management-project.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5DF5403424F10D8E00B63028 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1160;
+				LastUpgradeCheck = 1160;
+				ORGANIZATIONNAME = "조종운";
+				TargetAttributes = {
+					5DF5403B24F10D8E00B63028 = {
+						CreatedOnToolsVersion = 11.6;
+					};
+				};
+			};
+			buildConfigurationList = 5DF5403724F10D8E00B63028 /* Build configuration list for PBXProject "refriger-management-project" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5DF5403324F10D8E00B63028;
+			productRefGroup = 5DF5403D24F10D8E00B63028 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5DF5403B24F10D8E00B63028 /* refriger-management-project */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5DF5403A24F10D8E00B63028 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DF5404F24F10D9000B63028 /* LaunchScreen.storyboard in Resources */,
+				5DF5405924F10EB500B63028 /* GoogleService-Info.plist in Resources */,
+				5DF5404C24F10D9000B63028 /* Preview Assets.xcassets in Resources */,
+				5DF5406824F117FB00B63028 /* RefrigerData.json in Resources */,
+				5DF5404924F10D9000B63028 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4F683119430377C7BAB0F765 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-refriger-management-project-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F31BC936A9F601EDAD96E4CB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-refriger-management-project/Pods-refriger-management-project-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-refriger-management-project/Pods-refriger-management-project-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-refriger-management-project/Pods-refriger-management-project-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5DF5403824F10D8E00B63028 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DF5405F24F1155600B63028 /* Menu.swift in Sources */,
+				5DF5406B24F119E100B63028 /* Login.swift in Sources */,
+				5DAA3B2E25010213009F3E5B /* Purchase.swift in Sources */,
+				5DF5406624F1159F00B63028 /* MartFoodData.swift in Sources */,
+				5DF5404524F10D8E00B63028 /* refriger_management_project.xcdatamodeld in Sources */,
+				5DF5406224F1158100B63028 /* FoodDetail.swift in Sources */,
+				5DF5404024F10D8E00B63028 /* AppDelegate.swift in Sources */,
+				5DF5405D24F1154800B63028 /* MartHome.swift in Sources */,
+				5DDFE19E24FD4B33008C055A /* UserInfoUpdate.swift in Sources */,
+				5DF5406F24F119F900B63028 /* Cart.swift in Sources */,
+				5DDFE19C24FD41FA008C055A /* CreateAccountDetail.swift in Sources */,
+				5DF5406D24F119EF00B63028 /* CreateAccount.swift in Sources */,
+				5DDFE1A124FDE5A1008C055A /* Test.swift in Sources */,
+				5DF5406424F1158C00B63028 /* FoodList.swift in Sources */,
+				5DF5404724F10D8E00B63028 /* ContentView.swift in Sources */,
+				5DF5407624F5A58E00B63028 /* AccountCheck.swift in Sources */,
+				5DC666C424FD096A00B15C8B /* UserInfo.swift in Sources */,
+				5DF5404224F10D8E00B63028 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		5DF5404D24F10D9000B63028 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5DF5404E24F10D9000B63028 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5DF5405124F10D9000B63028 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		5DF5405224F10D9000B63028 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5DF5405424F10D9000B63028 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 30032DF1EB4ED2BE3E8FAAC3 /* Pods-refriger-management-project.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"refriger-management-project/Preview Content\"";
+				DEVELOPMENT_TEAM = 8TC4W5JV38;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "refriger-management-project/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "cho.refriger-management-project";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5DF5405524F10D9000B63028 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 793048D7B14C511180979586 /* Pods-refriger-management-project.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"refriger-management-project/Preview Content\"";
+				DEVELOPMENT_TEAM = 8TC4W5JV38;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "refriger-management-project/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "cho.refriger-management-project";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5DF5403724F10D8E00B63028 /* Build configuration list for PBXProject "refriger-management-project" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5DF5405124F10D9000B63028 /* Debug */,
+				5DF5405224F10D9000B63028 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5DF5405324F10D9000B63028 /* Build configuration list for PBXNativeTarget "refriger-management-project" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5DF5405424F10D9000B63028 /* Debug */,
+				5DF5405524F10D9000B63028 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		5DF5404324F10D8E00B63028 /* refriger_management_project.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				5DF5404424F10D8E00B63028 /* refriger_management_project.xcdatamodel */,
+			);
+			currentVersion = 5DF5404424F10D8E00B63028 /* refriger_management_project.xcdatamodel */;
+			path = refriger_management_project.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 5DF5403424F10D8E00B63028 /* Project object */;
+}
