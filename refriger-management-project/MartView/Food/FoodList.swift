@@ -11,6 +11,8 @@ import FirebaseAuth
 
 struct FoodList: View {
     
+    @EnvironmentObject var tabViewHelper: TabViewHelper
+    
     @ObservedObject var categorySelector: CategorySelector
     
     @ObservedObject var userHelper: UserHelper
@@ -63,7 +65,7 @@ struct FoodList: View {
                 ScrollView(.vertical, showsIndicators: false) {
                 
                     /* 카테고리 이미지  */
-                    Image(categorySelector.foodCategory)
+                    Image("카테고리-" + categorySelector.foodCategory)
                         .resizable()
                         .scaledToFill()
                         .frame(width: UIScreen.main.bounds.width - 50, height: 150)
@@ -97,37 +99,37 @@ struct FoodList: View {
                     ForEach(0 ..< martfoodData.count, id: \.self) { index in
                         VStack {
                             if martfoodData[index].foodType == self.categorySelector.foodType {
-                                Button(action: {
+                                VStack {
+                                    Image(martfoodData[index].name)
+                                        .renderingMode(.original)
+                                        .resizable()
+                                        .frame(height: 300)
+                                        .cornerRadius(15)
+                                        .shadow(color: .gray, radius: 1, x: 2, y: 2)
+                                        .shadow(color: Color.gray.opacity(0.5), radius: 1, x: -1, y: -1)
+                                        .padding(.horizontal, 30)
+            
+                                    VStack(spacing: 8) {
+                                        Text(martfoodData[index].name)
+                                            .fontWeight(.light)
+                                        Text("\(martfoodData[index].price) 원")
+                                            .fontWeight(.light)
+                                    }
+                                    .padding(.top, 5)
+                                    .foregroundColor(.black)
+                                }
+                                .onTapGesture {
                                     self.foodDetailInfo.foodName = martfoodData[index].name
                                     self.foodDetailInfo.foodType = martfoodData[index].foodType
                                     self.foodDetailInfo.foodCount = 1
                                     self.foodDetailInfo.foodPrice = martfoodData[index].price
                                     self.foodDetailInfo.original_foodPrice = martfoodData[index].price
-                
+                                    
                                     withAnimation {
                                         self.foodDetailInfo.foodDetailOffset.width = 0
                                     }
-                                }) {
-                                    VStack {
-                                        Image(martfoodData[index].name)
-                                            .renderingMode(.original)
-                                            .resizable()
-                                            .frame(height: 300)
-                                            .cornerRadius(15)
-                                            .shadow(color: .gray, radius: 1, x: 2, y: 2)
-                                            .shadow(color: Color.gray.opacity(0.5), radius: 1, x: -1, y: -1)
-                                            .padding(.horizontal, 30)
-                
-                                        VStack(spacing: 8) {
-                                            Text(martfoodData[index].name)
-                                                .fontWeight(.light)
-                                            Text("\(martfoodData[index].price) 원")
-                                                .fontWeight(.light)
-                                        }
-                                        .padding(.top, 5)
-                                        .foregroundColor(.black)
-                                    }
                                 }
+                                
                             }
                         }
                     }

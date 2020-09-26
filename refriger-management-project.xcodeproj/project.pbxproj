@@ -7,11 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D34C3812517793C00F40844 /* DisplaySelectedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D34C3802517793C00F40844 /* DisplaySelectedList.swift */; };
+		5D34C383251A30E000F40844 /* RemoveAppendFood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D34C382251A30DF00F40844 /* RemoveAppendFood.swift */; };
 		5DAA3B2E25010213009F3E5B /* Purchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAA3B2D25010213009F3E5B /* Purchase.swift */; };
 		5DC666C424FD096A00B15C8B /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC666C324FD096A00B15C8B /* UserInfo.swift */; };
 		5DDFE19C24FD41FA008C055A /* CreateAccountDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDFE19B24FD41FA008C055A /* CreateAccountDetail.swift */; };
 		5DDFE19E24FD4B33008C055A /* UserInfoUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDFE19D24FD4B33008C055A /* UserInfoUpdate.swift */; };
-		5DDFE1A124FDE5A1008C055A /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDFE1A024FDE5A1008C055A /* Test.swift */; };
+		5DE60EE6250E3DC800CB47D9 /* SelfAppendDataSet.json in Resources */ = {isa = PBXBuildFile; fileRef = 5DE60EE5250E3DC800CB47D9 /* SelfAppendDataSet.json */; };
+		5DE60EE8250E3E0300CB47D9 /* SelfAppendCategoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE60EE7250E3E0300CB47D9 /* SelfAppendCategoryData.swift */; };
+		5DE60EEE250FA73C00CB47D9 /* SelfAppendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE60EED250FA73C00CB47D9 /* SelfAppendView.swift */; };
+		5DE60EF2250FC0E200CB47D9 /* DragAppendHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE60EF1250FC0E200CB47D9 /* DragAppendHelper.swift */; };
+		5DE60EF62510E32C00CB47D9 /* DragFoodImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE60EF52510E32C00CB47D9 /* DragFoodImage.swift */; };
+		5DE60EF82510F7E600CB47D9 /* DragAppendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE60EF72510F7E600CB47D9 /* DragAppendView.swift */; };
+		5DE60EFA2511003A00CB47D9 /* DirectAppendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE60EF92511003A00CB47D9 /* DirectAppendView.swift */; };
+		5DE60EFC251244E000CB47D9 /* UsingCameraRoll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE60EFB251244E000CB47D9 /* UsingCameraRoll.swift */; };
+		5DE60EFF2514DA9200CB47D9 /* SavedFoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE60EFE2514DA9200CB47D9 /* SavedFoodCell.swift */; };
+		5DE60F01251518B100CB47D9 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE60F00251518B100CB47D9 /* TabView.swift */; };
+		5DE60F032515D4B700CB47D9 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE60F022515D4B700CB47D9 /* Test.swift */; };
+		5DE60F052515DC6300CB47D9 /* FoodManagementMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE60F042515DC6300CB47D9 /* FoodManagementMain.swift */; };
+		5DE60F072515E15600CB47D9 /* SavedFoodList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE60F062515E15600CB47D9 /* SavedFoodList.swift */; };
 		5DF5404024F10D8E00B63028 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF5403F24F10D8E00B63028 /* AppDelegate.swift */; };
 		5DF5404224F10D8E00B63028 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF5404124F10D8E00B63028 /* SceneDelegate.swift */; };
 		5DF5404524F10D8E00B63028 /* refriger_management_project.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5DF5404324F10D8E00B63028 /* refriger_management_project.xcdatamodeld */; };
@@ -35,11 +49,25 @@
 
 /* Begin PBXFileReference section */
 		30032DF1EB4ED2BE3E8FAAC3 /* Pods-refriger-management-project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-refriger-management-project.debug.xcconfig"; path = "Target Support Files/Pods-refriger-management-project/Pods-refriger-management-project.debug.xcconfig"; sourceTree = "<group>"; };
+		5D34C3802517793C00F40844 /* DisplaySelectedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplaySelectedList.swift; sourceTree = "<group>"; };
+		5D34C382251A30DF00F40844 /* RemoveAppendFood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveAppendFood.swift; sourceTree = "<group>"; };
 		5DAA3B2D25010213009F3E5B /* Purchase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Purchase.swift; sourceTree = "<group>"; };
 		5DC666C324FD096A00B15C8B /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		5DDFE19B24FD41FA008C055A /* CreateAccountDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountDetail.swift; sourceTree = "<group>"; };
 		5DDFE19D24FD4B33008C055A /* UserInfoUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoUpdate.swift; sourceTree = "<group>"; };
-		5DDFE1A024FDE5A1008C055A /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
+		5DE60EE5250E3DC800CB47D9 /* SelfAppendDataSet.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = SelfAppendDataSet.json; path = ../../../../../../SelfAppendDataSet.json; sourceTree = "<group>"; };
+		5DE60EE7250E3E0300CB47D9 /* SelfAppendCategoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfAppendCategoryData.swift; sourceTree = "<group>"; };
+		5DE60EED250FA73C00CB47D9 /* SelfAppendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfAppendView.swift; sourceTree = "<group>"; };
+		5DE60EF1250FC0E200CB47D9 /* DragAppendHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragAppendHelper.swift; sourceTree = "<group>"; };
+		5DE60EF52510E32C00CB47D9 /* DragFoodImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragFoodImage.swift; sourceTree = "<group>"; };
+		5DE60EF72510F7E600CB47D9 /* DragAppendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragAppendView.swift; sourceTree = "<group>"; };
+		5DE60EF92511003A00CB47D9 /* DirectAppendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectAppendView.swift; sourceTree = "<group>"; };
+		5DE60EFB251244E000CB47D9 /* UsingCameraRoll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsingCameraRoll.swift; sourceTree = "<group>"; };
+		5DE60EFE2514DA9200CB47D9 /* SavedFoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedFoodCell.swift; sourceTree = "<group>"; };
+		5DE60F00251518B100CB47D9 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
+		5DE60F022515D4B700CB47D9 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
+		5DE60F042515DC6300CB47D9 /* FoodManagementMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodManagementMain.swift; sourceTree = "<group>"; };
+		5DE60F062515E15600CB47D9 /* SavedFoodList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedFoodList.swift; sourceTree = "<group>"; };
 		5DF5403C24F10D8E00B63028 /* refriger-management-project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "refriger-management-project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DF5403F24F10D8E00B63028 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5DF5404124F10D8E00B63028 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -87,14 +115,60 @@
 		5DDFE19F24FDE09D008C055A /* FoodManagement */ = {
 			isa = PBXGroup;
 			children = (
-				5DDFE1A024FDE5A1008C055A /* Test.swift */,
+				5DE60F042515DC6300CB47D9 /* FoodManagementMain.swift */,
+				5DE60EED250FA73C00CB47D9 /* SelfAppendView.swift */,
+				5D34C3802517793C00F40844 /* DisplaySelectedList.swift */,
+				5D34C382251A30DF00F40844 /* RemoveAppendFood.swift */,
+				5DE60EFD2514DA0500CB47D9 /* Saved */,
+				5DE60EF0250FBBDA00CB47D9 /* Drag */,
+				5DE60EEF250FBBC600CB47D9 /* Input */,
+				5DE60EE4250E3D9000CB47D9 /* Model */,
 			);
 			path = FoodManagement;
+			sourceTree = "<group>";
+		};
+		5DE60EE4250E3D9000CB47D9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5DE60EE5250E3DC800CB47D9 /* SelfAppendDataSet.json */,
+				5DE60EE7250E3E0300CB47D9 /* SelfAppendCategoryData.swift */,
+				5DE60EF1250FC0E200CB47D9 /* DragAppendHelper.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5DE60EEF250FBBC600CB47D9 /* Input */ = {
+			isa = PBXGroup;
+			children = (
+				5DE60EF92511003A00CB47D9 /* DirectAppendView.swift */,
+				5DE60EFB251244E000CB47D9 /* UsingCameraRoll.swift */,
+			);
+			name = Input;
+			path = "직접추가";
+			sourceTree = "<group>";
+		};
+		5DE60EF0250FBBDA00CB47D9 /* Drag */ = {
+			isa = PBXGroup;
+			children = (
+				5DE60EF52510E32C00CB47D9 /* DragFoodImage.swift */,
+				5DE60EF72510F7E600CB47D9 /* DragAppendView.swift */,
+			);
+			path = Drag;
+			sourceTree = "<group>";
+		};
+		5DE60EFD2514DA0500CB47D9 /* Saved */ = {
+			isa = PBXGroup;
+			children = (
+				5DE60EFE2514DA9200CB47D9 /* SavedFoodCell.swift */,
+				5DE60F062515E15600CB47D9 /* SavedFoodList.swift */,
+			);
+			path = Saved;
 			sourceTree = "<group>";
 		};
 		5DF5403324F10D8E00B63028 = {
 			isa = PBXGroup;
 			children = (
+				5DE60F022515D4B700CB47D9 /* Test.swift */,
 				5DF5403E24F10D8E00B63028 /* refriger-management-project */,
 				5DF5403D24F10D8E00B63028 /* Products */,
 				6412AF62EBE28947F3356DA8 /* Pods */,
@@ -116,6 +190,7 @@
 				5DF5403F24F10D8E00B63028 /* AppDelegate.swift */,
 				5DF5404124F10D8E00B63028 /* SceneDelegate.swift */,
 				5DF5404624F10D8E00B63028 /* ContentView.swift */,
+				5DE60F00251518B100CB47D9 /* TabView.swift */,
 				5DDFE19F24FDE09D008C055A /* FoodManagement */,
 				5DF5405A24F1151A00B63028 /* MartView */,
 				5DF5407424F5A54900B63028 /* MartAccount */,
@@ -258,6 +333,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DE60EE6250E3DC800CB47D9 /* SelfAppendDataSet.json in Resources */,
 				5DF5404F24F10D9000B63028 /* LaunchScreen.storyboard in Resources */,
 				5DF5405924F10EB500B63028 /* GoogleService-Info.plist in Resources */,
 				5DF5404C24F10D9000B63028 /* Preview Assets.xcassets in Resources */,
@@ -317,20 +393,33 @@
 			files = (
 				5DF5405F24F1155600B63028 /* Menu.swift in Sources */,
 				5DF5406B24F119E100B63028 /* Login.swift in Sources */,
+				5DE60F01251518B100CB47D9 /* TabView.swift in Sources */,
+				5DE60EE8250E3E0300CB47D9 /* SelfAppendCategoryData.swift in Sources */,
+				5DE60EFA2511003A00CB47D9 /* DirectAppendView.swift in Sources */,
+				5D34C3812517793C00F40844 /* DisplaySelectedList.swift in Sources */,
 				5DAA3B2E25010213009F3E5B /* Purchase.swift in Sources */,
 				5DF5406624F1159F00B63028 /* MartFoodData.swift in Sources */,
+				5DE60EF2250FC0E200CB47D9 /* DragAppendHelper.swift in Sources */,
 				5DF5404524F10D8E00B63028 /* refriger_management_project.xcdatamodeld in Sources */,
 				5DF5406224F1158100B63028 /* FoodDetail.swift in Sources */,
 				5DF5404024F10D8E00B63028 /* AppDelegate.swift in Sources */,
 				5DF5405D24F1154800B63028 /* MartHome.swift in Sources */,
+				5D34C383251A30E000F40844 /* RemoveAppendFood.swift in Sources */,
+				5DE60EEE250FA73C00CB47D9 /* SelfAppendView.swift in Sources */,
 				5DDFE19E24FD4B33008C055A /* UserInfoUpdate.swift in Sources */,
 				5DF5406F24F119F900B63028 /* Cart.swift in Sources */,
 				5DDFE19C24FD41FA008C055A /* CreateAccountDetail.swift in Sources */,
+				5DE60EF62510E32C00CB47D9 /* DragFoodImage.swift in Sources */,
 				5DF5406D24F119EF00B63028 /* CreateAccount.swift in Sources */,
-				5DDFE1A124FDE5A1008C055A /* Test.swift in Sources */,
 				5DF5406424F1158C00B63028 /* FoodList.swift in Sources */,
 				5DF5404724F10D8E00B63028 /* ContentView.swift in Sources */,
+				5DE60F072515E15600CB47D9 /* SavedFoodList.swift in Sources */,
+				5DE60F032515D4B700CB47D9 /* Test.swift in Sources */,
+				5DE60EFC251244E000CB47D9 /* UsingCameraRoll.swift in Sources */,
+				5DE60EF82510F7E600CB47D9 /* DragAppendView.swift in Sources */,
 				5DF5407624F5A58E00B63028 /* AccountCheck.swift in Sources */,
+				5DE60EFF2514DA9200CB47D9 /* SavedFoodCell.swift in Sources */,
+				5DE60F052515DC6300CB47D9 /* FoodManagementMain.swift in Sources */,
 				5DC666C424FD096A00B15C8B /* UserInfo.swift in Sources */,
 				5DF5404224F10D8E00B63028 /* SceneDelegate.swift in Sources */,
 			);

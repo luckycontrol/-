@@ -9,24 +9,26 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @EnvironmentObject var tabViewHelper: TabViewHelper
+    
     var body: some View {
-        TabView {
-            
-            Test()
-                .tabItem {
-                    Image("refriger")
-                        .resizable()
-                        .frame(width: 20, height: 20)
-                    Text("냉장고")
+        ZStack {
+            Group {
+                if tabViewHelper.view == "식료품관리-선택" {
+                    FoodManagementMain()
+                } else {
+                    MartHome()
+                }
             }
             
-            MartHome()
-                .tabItem {
-                    Image(systemName: "bag")
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                    Text("식자재 구입")
+            if tabViewHelper.isOn {
+                VStack {
+                    Spacer()
+                    TabView()
+                }.edgesIgnoringSafeArea(.bottom)
             }
+            
         }
     }
 }
