@@ -22,39 +22,43 @@ struct SavedFoodCell: View {
     
     var body: some View {
         VStack {
-            ZStack {
-                RoundedRectangle(cornerRadius: 15)
-                    .foregroundColor(.white)
-                    .shadow(color: .gray, radius: 1, x: 1, y: 1)
-                    .shadow(color: .green, radius: 4, x: 2, y: 2)
-                
-                VStack {
-                    Image(uiImage: UIImage(data: food.foodImage!)!)
-                        .resizable()
-                        .clipShape(Circle())
-                        .frame(width: 80, height: 80)
-                        .shadow(color: .green, radius: 4, x: 2, y: 2)
-                        .offset(y: -30)
-                    
-                    Spacer()
-                    
-                    HStack {
-                        VStack(alignment: .leading, spacing: 10) {
-                            Text(food.foodName!)
-                                .fontWeight(.bold)
-                            Text(food.foodType!)
-                                .fontWeight(.bold)
-                            Text("\(food.expiration!, formatter: dateformatter) 까지")
-                                .multilineTextAlignment(.leading)
-                        }.padding()
-                        
-                        
-                        Spacer()
-                    }
-                }
+            HStack {
+                Image(uiImage: UIImage(data: food.foodImage!)!)
+                    .resizable()
+                    .frame(width: 80, height: 80)
+                    .clipShape(Circle())
+                    .offset(y: -30)
+                    .shadow(color: .green, radius: 1, x: 1, y: 1)
+                    .padding()
+            }
+            
+            VStack(alignment: .leading) {
+                Text("\(food.foodName!)")
+                Text("\(food.foodType!)")
+                Text("\(food.expiration!, formatter: dateformatter)")
+            }
+            .foregroundColor(.black)
+            .padding()
+        }
+        .background(RoundedRectangle(cornerRadius: 15))
+        .foregroundColor(.white)
+        .shadow(color: .gray, radius: 1, x: 1, y: 1)
+        .shadow(color: .green, radius: 2, x: 1, y: 1)
+        .padding(20)
+        .onTapGesture {
+            /* 클릭하면 선택된 식료품이 팝업된다. */
+            savedFoodHelper.savedFood = ReadyForAppend(
+                id: food.id!,
+                foodName: food.foodName!,
+                foodType: food.foodType!,
+                foodImage: UIImage(data: food.foodImage!)!,
+                expiration: food.expiration!
+            )
+            
+            withAnimation {
+                savedFoodHelper.editFood = true
             }
         }
-        .frame(width: 170, height: 80)
     }
 }
 

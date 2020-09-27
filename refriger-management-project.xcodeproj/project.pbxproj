@@ -44,6 +44,7 @@
 		5DF5406D24F119EF00B63028 /* CreateAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF5406C24F119EF00B63028 /* CreateAccount.swift */; };
 		5DF5406F24F119F900B63028 /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF5406E24F119F900B63028 /* Cart.swift */; };
 		5DF5407624F5A58E00B63028 /* AccountCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF5407524F5A58E00B63028 /* AccountCheck.swift */; };
+		69E18E602520B74D008892B9 /* DeleteSavedFood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E18E5F2520B74D008892B9 /* DeleteSavedFood.swift */; };
 		CD86EDE3CC65EB38478DBE19 /* Pods_refriger_management_project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89D25FE82CE32A598A55DDAE /* Pods_refriger_management_project.framework */; };
 /* End PBXBuildFile section */
 
@@ -88,6 +89,7 @@
 		5DF5406C24F119EF00B63028 /* CreateAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccount.swift; sourceTree = "<group>"; };
 		5DF5406E24F119F900B63028 /* Cart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
 		5DF5407524F5A58E00B63028 /* AccountCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCheck.swift; sourceTree = "<group>"; };
+		69E18E5F2520B74D008892B9 /* DeleteSavedFood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteSavedFood.swift; sourceTree = "<group>"; };
 		793048D7B14C511180979586 /* Pods-refriger-management-project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-refriger-management-project.release.xcconfig"; path = "Target Support Files/Pods-refriger-management-project/Pods-refriger-management-project.release.xcconfig"; sourceTree = "<group>"; };
 		89D25FE82CE32A598A55DDAE /* Pods_refriger_management_project.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_refriger_management_project.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -121,7 +123,7 @@
 				5D34C382251A30DF00F40844 /* RemoveAppendFood.swift */,
 				5DE60EFD2514DA0500CB47D9 /* Saved */,
 				5DE60EF0250FBBDA00CB47D9 /* Drag */,
-				5DE60EEF250FBBC600CB47D9 /* Input */,
+				5DE60EEF250FBBC600CB47D9 /* Direct */,
 				5DE60EE4250E3D9000CB47D9 /* Model */,
 			);
 			path = FoodManagement;
@@ -137,13 +139,13 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		5DE60EEF250FBBC600CB47D9 /* Input */ = {
+		5DE60EEF250FBBC600CB47D9 /* Direct */ = {
 			isa = PBXGroup;
 			children = (
 				5DE60EF92511003A00CB47D9 /* DirectAppendView.swift */,
 				5DE60EFB251244E000CB47D9 /* UsingCameraRoll.swift */,
 			);
-			name = Input;
+			name = Direct;
 			path = "직접추가";
 			sourceTree = "<group>";
 		};
@@ -161,6 +163,7 @@
 			children = (
 				5DE60EFE2514DA9200CB47D9 /* SavedFoodCell.swift */,
 				5DE60F062515E15600CB47D9 /* SavedFoodList.swift */,
+				69E18E5F2520B74D008892B9 /* DeleteSavedFood.swift */,
 			);
 			path = Saved;
 			sourceTree = "<group>";
@@ -421,6 +424,7 @@
 				5DE60EFF2514DA9200CB47D9 /* SavedFoodCell.swift in Sources */,
 				5DE60F052515DC6300CB47D9 /* FoodManagementMain.swift in Sources */,
 				5DC666C424FD096A00B15C8B /* UserInfo.swift in Sources */,
+				69E18E602520B74D008892B9 /* DeleteSavedFood.swift in Sources */,
 				5DF5404224F10D8E00B63028 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

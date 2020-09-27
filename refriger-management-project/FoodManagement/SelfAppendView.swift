@@ -12,6 +12,13 @@ struct SelfAppendView: View {
     
     @Environment(\.managedObjectContext) var managedObjectContext
     
+    @FetchRequest(
+        entity: FoodInInnerDB.entity(),
+        sortDescriptors: [
+            NSSortDescriptor(keyPath: \FoodInInnerDB.expiration, ascending: false)
+        ]
+    ) var savedfood: FetchedResults<FoodInInnerDB>
+    
     @EnvironmentObject var tabViewHelper: TabViewHelper
     
     let foodCategories = ["과일", "채소", "정육", "해산물", "유제품"]
@@ -122,6 +129,8 @@ struct SelfAppendView: View {
                                 
                             }
                         }
+                        
+                        print(savedfood.count)
                     }) {
                         ZStack {
                             Capsule()

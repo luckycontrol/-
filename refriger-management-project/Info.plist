@@ -53,6 +53,8 @@
 	</array>
 	<key>UIUserInterfaceStyle</key>
 	<string></string>
+	<key>NSCameraUsageDescription</key>
+	<string>식료품 촬영을위해 카메라를 사용합니다</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

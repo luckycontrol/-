@@ -31,12 +31,17 @@ struct SavedFoodList: View {
                 
                 /* 저장된 목록 출력 */
                 ScrollView(.horizontal, showsIndicators: false) {
-                    ForEach(0 ..< savedfood.count) { index in
-                        if self.savedfood[index].foodType == self.foodType {
-                            SavedFoodCell(savedFoodHelper: self.savedFoodHelper, food: self.savedfood[index])
+                    VStack {
+                        HStack {
+                            ForEach(savedfood) { food in
+                                if food.foodType == foodType {
+                                    SavedFoodCell(savedFoodHelper: savedFoodHelper, food: food)
+                                }
+                            }
                         }
                     }
                 }
+                Divider().background(Color.gray.opacity(0.7))
             }
             .padding()
         }

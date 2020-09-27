@@ -103,14 +103,33 @@ class SavingFoodHelper: ObservableObject {
 
 /* 저장된 식자재를 위한 클래스 */
 class SavedFoodHelper: ObservableObject {
+    
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @FetchRequest(
+        entity: FoodInInnerDB.entity(),
+        sortDescriptors: [
+            NSSortDescriptor(keyPath: \FoodInInnerDB.expiration, ascending: false)
+        ]
+    ) var savedfood: FetchedResults<FoodInInnerDB>
+    
     @Published var savedFoodList: [ReadyForAppend] = []
-    @Published var changeSortingWay: String = "일반"
+    @Published var editFood: Bool = false
+    @Published var savedFood: ReadyForAppend?
     
-    /* DB에서 가져오기 */
-    
-    /* DB에 리스트 넣기 */
-    
-    /* 해당 식료품을 리스트에서 지우기 */
+    /* CoreData에서 지우기 */
+    func deleteFood(food: ReadyForAppend) {
+        for food in savedfood {
+            if food.id! == savedFood?.id {
+                managedObjectContext.delete(food)
+                
+                do {
+                    try managedObjectContext.save()
+                } catch {
+                
+                }
+            }
+        }
+    }
     
     
 }
