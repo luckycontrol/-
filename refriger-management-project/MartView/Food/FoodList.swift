@@ -120,6 +120,7 @@ struct FoodList: View {
                                 }
                                 .onTapGesture {
                                     self.foodDetailInfo.foodName = martfoodData[index].name
+                                    self.foodDetailInfo.foodCategory = martfoodData[index].category
                                     self.foodDetailInfo.foodType = martfoodData[index].foodType
                                     self.foodDetailInfo.foodCount = 1
                                     self.foodDetailInfo.foodPrice = martfoodData[index].price

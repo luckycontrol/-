@@ -10,6 +10,15 @@ import SwiftUI
 
 struct SavedFoodCell: View {
     
+    @Environment(\.managedObjectContext) var managedObjectContext
+    
+    @FetchRequest(
+        entity: FoodInInnerDB.entity(),
+        sortDescriptors: [
+            NSSortDescriptor(keyPath: \FoodInInnerDB.expiration, ascending: true),
+        ]
+    ) var savedfood: FetchedResults<FoodInInnerDB>
+    
     @ObservedObject var savedFoodHelper: SavedFoodHelper
     
     let food: FoodInInnerDB
@@ -19,6 +28,28 @@ struct SavedFoodCell: View {
         formatter.dateFormat = "yyyy-MM-dd"
         return formatter
     }()
+    
+    @State var deleteAlertState = false
+    
+    var deleteAlert: Alert {
+        Alert(
+            title: Text("식료품 삭제"),
+            message: Text("선택하신 식료퓸을 삭제하시겠습니까?"),
+            primaryButton: .default(Text("삭제"), action: {
+                for f in savedfood {
+                    if f.id == food.id {
+                        managedObjectContext.delete(f)
+                        break
+                    }
+                }
+                
+                do {
+                   try managedObjectContext.save()
+                } catch { }
+            }),
+            secondaryButton: .cancel(Text("취소"))
+        )
+    }
     
     var body: some View {
         VStack {
@@ -45,25 +76,19 @@ struct SavedFoodCell: View {
         .shadow(color: .gray, radius: 1, x: 1, y: 1)
         .shadow(color: .green, radius: 2, x: 1, y: 1)
         .padding(20)
-        .onTapGesture {
-            /* 클릭하면 선택된 식료품이 팝업된다. */
-            savedFoodHelper.savedFood = ReadyForAppend(
-                id: food.id!,
-                foodName: food.foodName!,
-                foodType: food.foodType!,
-                foodImage: UIImage(data: food.foodImage!)!,
-                expiration: food.expiration!
-            )
-            
-            withAnimation {
-                savedFoodHelper.editFood = true
-            }
+        .onTapGesture { }
+        .onLongPressGesture(minimumDuration: 0.5) {
+            UINotificationFeedbackGenerator().notificationOccurred(.success)
+            deleteAlertState = true
         }
+        .alert(isPresented: $deleteAlertState, content: {
+            deleteAlert
+        })
     }
 }
 
 extension SavedFoodCell {
-    
+      
     /* 유통기한에따라 색 변환 */
     func expirationColor() {
         

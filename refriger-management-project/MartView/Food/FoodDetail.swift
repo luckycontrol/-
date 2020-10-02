@@ -35,7 +35,7 @@ struct FoodDetail: View {
                     (Auth.auth().currentUser?.email!)!,
                     CartFoodType(
                         foodName: self.foodDetailInfo.foodName,
-                        foodType: self.foodDetailInfo.foodType,
+                        foodCategory: self.foodDetailInfo.foodCategory,
                         foodCount: self.foodDetailInfo.foodCount,
                         foodPrice: self.foodDetailInfo.foodPrice
                 )) { (isSuccess) in
@@ -133,6 +133,7 @@ struct FoodDetail: View {
 
 class FoodDetailInfo: ObservableObject {
     @Published var foodName: String = ""
+    @Published var foodCategory: String = ""
     @Published var foodType: String = ""
     @Published var foodCount: Int = 0
     @Published var foodPrice: String = ""

@@ -14,25 +14,13 @@ struct DeleteSavedFood: View {
     
     @State var deleteFood = false
     
+    @State var expiration = Date()
+    
     let dateformatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         return formatter
     }()
-    
-    var deleteAlert: Alert {
-        Alert(
-            title: Text("식료품 삭제"),
-            message: Text("선택하신 식료품을 삭제할까요?"),
-            primaryButton: .default(Text("삭제"), action: {
-                savedFoodHelper.deleteFood(food: savedFoodHelper.savedFood!)
-                withAnimation {
-                    savedFoodHelper.editFood = false
-                }
-            }),
-            secondaryButton: .cancel(Text("취소"))
-        )
-    }
     
     var body: some View {
         VStack {
@@ -48,9 +36,6 @@ struct DeleteSavedFood: View {
                         Text("삭제")
                             .foregroundColor(.red)
                     }
-                    .alert(isPresented: $deleteFood, content: {
-                        deleteAlert
-                    })
                 }
                 
                 /* 식료품 이미지, 타입 유통기한 */
@@ -63,7 +48,9 @@ struct DeleteSavedFood: View {
                     
                     VStack(alignment: .leading) {
                         Text("\(savedFoodHelper.savedFood!.foodType)")
-                        Text("\(savedFoodHelper.savedFood!.expiration, formatter: dateformatter)")
+                        DatePicker("", selection: $expiration, in: Date()..., displayedComponents: .date)
+                            .labelsHidden()
+                        
                     }
                     .padding(.leading, 40)
                     
@@ -74,7 +61,8 @@ struct DeleteSavedFood: View {
                 
                 /* 변경버튼 */
                 Button(action: {
-                    self.savedFoodHelper.editFood = true
+                    savedFoodHelper.savedFood?.expiration = expiration
+                    self.savedFoodHelper.editFood = false
                 }) {
                     HStack {
                         Text("변경")

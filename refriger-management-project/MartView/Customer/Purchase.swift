@@ -25,8 +25,6 @@ struct Purchase: View {
     
     @State private var purhcaseAlertStatus = false
     
-    @State private var purchased = false
-    
     var user_email = (Auth.auth().currentUser?.email)!
     
     /* 결제확인 Alert */
@@ -34,21 +32,11 @@ struct Purchase: View {
         Alert(
             title: Text("결제하시겠습니까?"),
             primaryButton: .default(Text("결제"), action: {
-                self.cartHelper.purchase(self.user_email, self.totalPrice)
-                self.purchased = true
+                cartHelper.purchase(user_email, totalPrice, userInfo)
                 UINotificationFeedbackGenerator().notificationOccurred(.success)
-                self.presentationMode.wrappedValue.dismiss()
+                presentationMode.wrappedValue.dismiss()
             }),
             secondaryButton: .cancel(Text("취소"))
-        )
-    }
-    
-    /* 결제완료 Alert */
-    var purchasedAlert: Alert {
-        Alert(
-            title: Text("결제완료!"),
-            message: Text("주문하신 식자재들이 주문되었습니다."),
-            dismissButton: .default(Text("확인"))
         )
     }
     
@@ -183,8 +171,6 @@ struct Purchase: View {
                 self.totalPrice = self.calTotalPrice()
             }
         }
-        .alert(isPresented: $purchased, content: { purchasedAlert })
-    
     }
     
     /* 최종결제금액 계산 */

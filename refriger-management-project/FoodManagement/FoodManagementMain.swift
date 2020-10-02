@@ -77,15 +77,6 @@ struct FoodManagementMain: View {
                 .padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.top)
                 .edgesIgnoringSafeArea(.all)
                 .overlay(savedFoodHelper.editFood ? Color.black.opacity(0.3).edgesIgnoringSafeArea(.all) : nil)
-                .onTapGesture {
-                    withAnimation {
-                        savedFoodHelper.editFood = false
-                    }
-                }
-                
-                if savedFoodHelper.editFood {
-                    DeleteSavedFood(savedFoodHelper: savedFoodHelper)
-                }
                 
             } else {
             /* 저장된 식료품이 없는 경우 */

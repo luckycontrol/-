@@ -46,7 +46,7 @@ struct MartFood: Hashable, Codable, Identifiable {
 
 struct CartFoodType: Hashable {
     var foodName: String
-    var foodType: String
+    var foodCategory: String
     var foodCount: Int
     var foodPrice: String
 }
@@ -68,7 +68,7 @@ class CartHelper: ObservableObject {
             .collection("User").document(email)
             .collection("Cart").document(martfood.foodName).setData([
                 "foodName": martfood.foodName,
-                "foodType": martfood.foodType,
+                "foodCategory": martfood.foodCategory,
                 "foodCount": martfood.foodCount,
                 "foodPrice": martfood.foodPrice
             ])
@@ -128,48 +128,58 @@ class CartHelper: ObservableObject {
     }
     
     /* 주문 횟수 구하기 */
-    func getOrderCount(_ email: String, completion: @escaping (Int) -> Void) {
+    func getOrderCount(_ email: String, completion: @escaping (Int, Array<String>) -> Void) {
         var orderCount: Int?
+        var orderArr: Array<String>?
         
         firebase_db
             .collection("Purchase").document(email).getDocument { document, error in
                 if let document = document, document.exists {
                     orderCount = document.data()!["orderCount"] as? Int
+                    orderArr = document.data()!["orderArr"] as? Array<String>
                 }
                 
-            completion(orderCount! + 1)
+                completion(orderCount! + 1, orderArr!)
         }
     }
     
     /* Purchase DB 주문넣기 */
-    func insertOrderInPurchase(_ email: String, _ totalPrice: String, _ orderCount: Int = 0) {
+    func insertOrderInPurchase(_ userInfo: User, _ email: String, _ totalPrice: String, _ orderCount: Int = 0, _ orderArr: Array<String> = [], completion: @escaping (Bool) -> Void) {
         var foodNames: [String] = []
-        var foodTypes: [String] = []
+        var foodCategory: [String] = []
         var foodCounts: [Int] = []
 
         for food in cartlist {
             foodNames.append(food.foodName)
-            foodTypes.append(food.foodType)
+            foodCategory.append(food.foodCategory)
             foodCounts.append(food.foodCount)
         }
+        
+        var _orderArr: Array<String> = orderArr
+        _orderArr.append(String(orderCount) + "-" + email)
+        
         
         firebase_db
             .collection("Purchase").document(email)
             .collection(String(orderCount)).document("Food").setData([
                 "foodNames": foodNames,
-                "foodTypes": foodTypes,
+                "foodCategory": foodCategory,
                 "foodCounts": foodCounts
             ])
-        
+
         firebase_db
             .collection("Purchase").document(email)
             .collection(String(orderCount)).document("orderInfo").setData([
-                "totalPrice": totalPrice
+                "totalPrice": totalPrice,
+                "hp": userInfo.hp,
+                "address": userInfo.address,
+                "name": userInfo.userName
             ])
-        
+
         firebase_db
             .collection("Purchase").document(email).setData([
-                "orderCount": orderCount
+                "orderCount": orderCount,
+                "orderArr": _orderArr
             ])
         
         firebase_db
@@ -179,24 +189,32 @@ class CartHelper: ObservableObject {
                     document.reference.delete()
                 }
         }
+        
+        completion(true)
     }
     
     /* 카트에 있는 식자재 구매 */
-    func purchase(_ email: String, _ totalPrice: String) {
+    func purchase(_ email: String, _ totalPrice: String, _ userInfo: User) {
         
         /* Purchase에 사용자 이메일이 있는지 확인 */
         checkUserInPurchase(email) { purchase_check in
             if purchase_check {
                 /* 이메일에서 주문횟수를 가져온다. */
-                self.getOrderCount(email) { orderCount in
+                self.getOrderCount(email) { orderCount, orderArr in
                     /* 주문을 넣는다. */
-                    self.insertOrderInPurchase(email, totalPrice, orderCount)
+                    self.insertOrderInPurchase(userInfo, email, totalPrice, orderCount, orderArr) { isSuccess in
+                        if isSuccess {
+                            self.cartlist.removeAll()
+                        }
+                    }
                 }
             } else {
-                self.insertOrderInPurchase(email, totalPrice)
+                self.insertOrderInPurchase(userInfo, email, totalPrice) { isSuccess in
+                    if isSuccess {
+                        self.cartlist.removeAll()
+                    }
+                }
             }
-            
-            self.cartlist.removeAll()
         }
     }
     
@@ -215,7 +233,7 @@ class CartHelper: ObservableObject {
                     for document in snapShot!.documents {
                         self.cartlist.append(CartFoodType(
                             foodName: document.data()["foodName"] as! String,
-                            foodType: document.data()["foodType"] as! String,
+                            foodCategory: document.data()["foodCategory"] as! String,
                             foodCount: document.data()["foodCount"] as! Int,
                             foodPrice: document.data()["foodPrice"] as! String )
                         )
