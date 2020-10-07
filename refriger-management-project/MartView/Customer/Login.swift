@@ -11,7 +11,10 @@ import FirebaseAuth
 
 struct Login: View {
     
-    @ObservedObject var userHelper: UserHelper
+    @EnvironmentObject var tabViewHelper: TabViewHelper
+    @EnvironmentObject var userHelper: UserHelper
+    
+    @Binding var view: String
     
     @State var id = ""
     @State var passwd = ""
@@ -76,10 +79,10 @@ struct Login: View {
                             print("error")
                         } else {
                             // 로그인 성공
-                            self.userHelper.login = true
+                            userHelper.login = true
                             UINotificationFeedbackGenerator().notificationOccurred(.success)
                             withAnimation {
-                                self.userHelper.login_locate = false
+                                view = "마트"
                             }
                         }
                     }
@@ -108,9 +111,10 @@ struct Login: View {
                 /* 로그인 뷰 닫기 버튼 */
                 Button(action: {
                     withAnimation {
-                        self.userHelper.login_locate = false
+                        view = "마트"
                         self.id = ""
                         self.passwd = ""
+                        tabViewHelper.isOn = true
                     }
                 }) {
                     Image(systemName: "xmark")
@@ -125,6 +129,6 @@ struct Login: View {
 
 struct Login_Previews: PreviewProvider {
     static var previews: some View {
-        Login(userHelper: UserHelper())
+        Login(view: .constant("로그인"))
     }
 }

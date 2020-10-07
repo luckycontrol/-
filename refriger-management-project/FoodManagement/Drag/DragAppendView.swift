@@ -77,14 +77,15 @@ struct DragAppendView: View {
                         Spacer()
                     }.padding(.vertical, 20)
                     
-                    Text("유통기한을 선택하세요")
-                        .font(.title)
-                        .fontWeight(.bold)
+                    HStack {
+                        Text("유통기한을 선택하세요")
+                            .font(.system(size: 15))
+                            .fontWeight(.bold)
+                        
+                        DatePicker("", selection: $expiration, in: Date()..., displayedComponents: .date)
+                    }.padding()
                     
                 }.padding(15)
-                
-                DatePicker("", selection: $expiration, in: Date()..., displayedComponents: .date)
-                .labelsHidden()
                 
                 Spacer()
                 

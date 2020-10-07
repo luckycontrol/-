@@ -12,32 +12,41 @@ import FirebaseFirestore
 
 struct FoodDetail: View {
     
+    @EnvironmentObject var tabViewHelepr: TabViewHelper
+    
     @Environment(\.presentationMode) var presentationMode
     
     @ObservedObject var userHelper: UserHelper
     
-    @ObservedObject var foodDetailInfo: FoodDetailInfo
+    @Binding var foodName: String
+    @Binding var foodCategory: String
+    @Binding var foodType: String
+    @Binding var foodCount: Int
+    @Binding var foodPrice: String
+    @Binding var original_foodPrice: String
+    
+    @Binding var view: String
     
     @State var addAlertStatus = false
     
     var addAlert: Alert {
         Alert(
             title: Text("장바구니 추가"),
-            message: Text("\(foodDetailInfo.foodName) (이)가 \n \(foodDetailInfo.foodCount) 개 추가되었습니다.")
+            message: Text("\(foodName) (이)가 \n \(foodCount) 개 추가되었습니다.")
         )
     }
     
     var purchaseButton: some View {
         Button(action: {
             /* 로그인 돼있으면.. */
-            if self.userHelper.login {
+            if userHelper.login {
                 CartHelper().addCart(
                     (Auth.auth().currentUser?.email!)!,
                     CartFoodType(
-                        foodName: self.foodDetailInfo.foodName,
-                        foodCategory: self.foodDetailInfo.foodCategory,
-                        foodCount: self.foodDetailInfo.foodCount,
-                        foodPrice: self.foodDetailInfo.foodPrice
+                        foodName: foodName,
+                        foodCategory: foodCategory,
+                        foodCount: foodCount,
+                        foodPrice: foodPrice
                 )) { (isSuccess) in
                     if isSuccess {
                         self.addAlertStatus = true
@@ -46,9 +55,8 @@ struct FoodDetail: View {
                 }
             /* 로그인 안돼있으면.. */
             } else {
-                self.presentationMode.wrappedValue.dismiss()
                 withAnimation {
-                    self.userHelper.login_locate = true
+                    view = "로그인"
                 }
             }
         }) {
@@ -69,7 +77,8 @@ struct FoodDetail: View {
             HStack {
                 Button(action: {
                     withAnimation {
-                        self.foodDetailInfo.foodDetailOffset.width = UIScreen.main.bounds.width
+                        view = "마트"
+                        tabViewHelepr.isOn = true
                     }
                 }) {
                     Image(systemName: "xmark")
@@ -81,11 +90,11 @@ struct FoodDetail: View {
             }.padding()
             
             /* 식자재 이름, 이미지 */
-            Text(foodDetailInfo.foodName)
+            Text(foodName)
                 .fontWeight(.bold)
                 .font(.system(size: 20))
             
-            Image(foodDetailInfo.foodName)
+            Image(foodName)
                 .resizable()
                 .frame(width: 300, height: 300)
                 .cornerRadius(15)
@@ -96,12 +105,12 @@ struct FoodDetail: View {
             
             /* 갯수 증가, 감소 버튼 */
             HStack(spacing: 40) {
-                CountButton(action: "minus", foodDetailInfo: foodDetailInfo)
+                CountButton(action: "minus", foodCount: $foodCount, foodPrice: $foodPrice, original_foodPrice: $original_foodPrice)
                 
-                Text("\(foodDetailInfo.foodCount)")
+                Text("\(foodCount)")
                     .fontWeight(.semibold)
                 
-                CountButton(action: "plus", foodDetailInfo: foodDetailInfo)
+                CountButton(action: "plus", foodCount: $foodCount, foodPrice: $foodPrice, original_foodPrice: $original_foodPrice)
             }
             
             Spacer()
@@ -113,7 +122,7 @@ struct FoodDetail: View {
                         .foregroundColor(.gray)
                         .fontWeight(.bold)
                     
-                    Text("\(foodDetailInfo.foodPrice) 원")
+                    Text("\(foodPrice) 원")
                         .fontWeight(.medium)
                 }
                 Spacer()
@@ -138,8 +147,6 @@ class FoodDetailInfo: ObservableObject {
     @Published var foodCount: Int = 0
     @Published var foodPrice: String = ""
     @Published var original_foodPrice: String = ""
-    
-    @Published var foodDetailOffset: CGSize = CGSize.init(width: UIScreen.main.bounds.width, height: 0)
 }
 
 /* 갯수 추가 | 제거 버튼 */
@@ -147,27 +154,29 @@ struct CountButton: View {
     
     let action: String
     
-    @ObservedObject var foodDetailInfo: FoodDetailInfo
+    @Binding var foodCount: Int
+    @Binding var foodPrice: String
+    @Binding var original_foodPrice: String
     
     var body: some View {
         Button(action: {
             /* 액션이 Plus */
             if self.action == "plus" {
-                self.foodDetailInfo.foodCount += 1
+                foodCount += 1
             }
             /* 액션이 Minus */
             else if self.action == "minus" {
-                if self.foodDetailInfo.foodCount > 1 {
-                    self.foodDetailInfo.foodCount -= 1
+                if foodCount > 1 {
+                    foodCount -= 1
                 }
             }
              
             /* 콤마를 제거*/
-            self.foodDetailInfo.foodPrice = CartHelper().sub_comma(self.foodDetailInfo.original_foodPrice)
+            foodPrice = CartHelper().sub_comma(original_foodPrice)
             /* 갯수에 맞게 가격을 변경*/
-            self.foodDetailInfo.foodPrice = String(Int(self.foodDetailInfo.foodPrice)! * self.foodDetailInfo.foodCount)
+            foodPrice = String(Int(foodPrice)! * foodCount)
             /* 콤마 삽입 */
-            self.foodDetailInfo.foodPrice = CartHelper().add_comma(self.foodDetailInfo.foodPrice)
+            foodPrice = CartHelper().add_comma(foodPrice)
             
         }) {
             Image(systemName: action)
@@ -183,6 +192,6 @@ struct CountButton: View {
 
 struct FoodDetail_Previews: PreviewProvider {
     static var previews: some View {
-        FoodDetail(userHelper: UserHelper(), foodDetailInfo: FoodDetailInfo())
+        FoodDetail(userHelper: UserHelper(), foodName: .constant("과일"), foodCategory: .constant("과일"), foodType: .constant("과일"), foodCount: .constant(0), foodPrice: .constant("0"), original_foodPrice: .constant(""), view: .constant("디테일"))
     }
 }

@@ -11,7 +11,7 @@ import FirebaseAuth
 
 struct UserInfo: View {
     
-    @ObservedObject var userHelper: UserHelper
+    @EnvironmentObject var userHelper: UserHelper
     
     @State var userInfo_update_arg = ""
     
@@ -174,6 +174,6 @@ struct UserInfoForm: View {
 
 struct UserInfo_Previews: PreviewProvider {
     static var previews: some View {
-        UserInfo(userHelper: UserHelper())
+        UserInfo()
     }
 }

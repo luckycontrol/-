@@ -120,14 +120,16 @@ struct DirectAppendView: View {
                     .padding()
                 }
                 
-                /* 유통기한선택 - 텍스트 */
-                Text("유통기한을 선택해주세요")
-                    .font(.title)
-                    .fontWeight(.bold)
                 
-                /* 유통기한선택 - DatePicker */
-                DatePicker("", selection: $expiration, in: Date()..., displayedComponents: .date)
-                    .labelsHidden()
+                HStack {
+                    /* 유통기한선택 - 텍스트 */
+                    Text("유통기한을 선택해주세요")
+                        .font(.system(size: 15))
+                        .fontWeight(.bold)
+                    
+                    /* 유통기한선택 - DatePicker */
+                    DatePicker("", selection: $expiration, in: Date()..., displayedComponents: .date)
+                }.padding()
                 
                 Spacer()
                 

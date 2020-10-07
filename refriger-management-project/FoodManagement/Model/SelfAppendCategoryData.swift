@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftUI
+import FirebaseFirestore
 
 let selfAppendData: [SelfAppendCategory] = load_category_data("SelfAppendDataSet.json")
 
@@ -38,7 +39,7 @@ struct SelfAppendCategory: Identifiable, Codable, Hashable {
     var foodType: String
 }
 
-/* 식료품을 저장하기 위한 클래스 */
+// MARK: 식료품을 저장하기위한 클래스
 class SavingFoodHelper: ObservableObject {
     @Published var readyForAppend: [[ReadyForAppend]] = []
     
@@ -101,18 +102,12 @@ class SavingFoodHelper: ObservableObject {
     
 }
 
-/* 저장된 식자재를 위한 클래스 */
+// MARK: 저장된 식자재를 관리하는 클래스
 class SavedFoodHelper: ObservableObject {
     
     @Published var savedFoodList: [ReadyForAppend] = []
     @Published var editFood: Bool = false
     @Published var savedFood: ReadyForAppend?
-    
-    /* CoreData에서 지우기 */
-    func deleteFood(food: ReadyForAppend, savedfood: [FoodInInnerDB]) {
-        
-    }
-    
     
 }
 

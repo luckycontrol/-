@@ -12,13 +12,17 @@ import FirebaseFirestore
 
 struct Cart: View {
     
+    @EnvironmentObject var tabViewHelper: TabViewHelper
+    
     @Environment(\.presentationMode) var presentationMode
     
     @ObservedObject var categorySelector: CategorySelector
     
-    @ObservedObject var userHelper: UserHelper
+    @EnvironmentObject var userHelper: UserHelper
     
     @ObservedObject var cartHelper: CartHelper
+    
+    @Binding var view: String
     
     @State var foodcell_offset: CGSize = .zero
     
@@ -78,7 +82,8 @@ struct Cart: View {
                 /* 나가기 버튼 */
                 Button(action: {
                     withAnimation {
-                        self.categorySelector.cart = false
+                        view = "마트"
+                        tabViewHelper.isOn = true
                     }
                 }) {
                     Image(systemName: "xmark")
@@ -154,6 +159,6 @@ struct Cart_FoodCell: View {
 
 struct Cart_Previews: PreviewProvider {
     static var previews: some View {
-        Cart(categorySelector: CategorySelector(), userHelper: UserHelper(), cartHelper: CartHelper())
+        Cart(categorySelector: CategorySelector(), cartHelper: CartHelper(), view: .constant("카트"))
     }
 }

@@ -17,9 +17,9 @@ struct FoodManagementMain: View {
         ]
     ) var savedfood: FetchedResults<FoodInInnerDB>
     
-    @EnvironmentObject var tabViewHelper: TabViewHelper
-    
     @ObservedObject var savedFoodHelper = SavedFoodHelper()
+    
+    @ObservedObject var viewModel = ScannerViewModel()
     
     @State private var editSavedFood = false
     
@@ -62,7 +62,7 @@ struct FoodManagementMain: View {
                         
                         /* 직접추가 / QR코드 추가 */
                         if editSavedFood {
-                            FoodManagementMenu(selectedMenu: $selectedMenu)
+                            FoodManagementMenu(selectedMenu: $selectedMenu, viewModel: viewModel)
                         }
                         
                         SavedFoodList(savedFoodHelper: savedFoodHelper, foodType: "과일")
@@ -106,7 +106,7 @@ struct FoodManagementMain: View {
                     
                     /* 직접추가 / QR코드 추가 */
                     if editSavedFood {
-                        FoodManagementMenu(selectedMenu: $selectedMenu)
+                        FoodManagementMenu(selectedMenu: $selectedMenu, viewModel: viewModel)
                     }
                     
                     Spacer()
@@ -121,19 +121,21 @@ struct FoodManagementMain: View {
 
             /* 직접추가 뷰 */
             SelfAppendView(selectedMenu: $selectedMenu)
-            
-            /* QR코드추가 뷰 */
-            
         }
+        .sheet(isPresented: $viewModel.viewStatus, content: {
+                ScannerView(viewModel: viewModel)
+        })
     }
 }
 
-/* 메뉴 - 직접추가 | QR코드추가 */
+//MARK: 직접추가버튼, QR코드추가버튼
 struct FoodManagementMenu: View {
     
     @EnvironmentObject var tabViewHelper: TabViewHelper
     
     @Binding var selectedMenu: String
+    
+    @ObservedObject var viewModel: ScannerViewModel
     
     var body: some View {
         VStack {
@@ -145,20 +147,14 @@ struct FoodManagementMenu: View {
                         self.tabViewHelper.isOn = false
                     }
                 }) {
-                    VStack {
-                        VStack {
-                            Image("직접추가")
-                                .renderingMode(.original)
-                                .resizable()
-                                .frame(width: 70, height: 70)
-                            
-                            Text("직접추가")
-                                .fontWeight(.bold)
-                                .foregroundColor(.black)
-                        }
-                        .padding()
+                    HStack {
+                        Text("직접 추가")
+                            .padding()
+                            .frame(width: UIScreen.main.bounds.width * 1/3, height: 70)
+                            .foregroundColor(.white)
                     }
-                    .background(RoundedRectangle(cornerRadius: 10).foregroundColor(.white))
+                    .background(RoundedRectangle(cornerRadius: 15))
+                    .foregroundColor(Color("fresh"))
                     .shadow(color: .gray, radius: 1, x: 1, y: 1)
                 
                 }
@@ -166,24 +162,19 @@ struct FoodManagementMenu: View {
                 /* QR코드추가 버튼 */
                 Button(action: {
                     withAnimation {
-                        self.selectedMenu = "qr코드추가"
-                        self.tabViewHelper.isOn = false
+                        self.viewModel.viewStatus = true
                     }
                 }) {
-                    VStack {
-                        VStack {
-                            Image("qr코드추가")
-                                .renderingMode(.original)
-                                .resizable()
-                                .frame(width: 70, height: 70)
-                            
-                            Text("qr코드추가")
-                                .foregroundColor(.black)
-                                .fontWeight(.bold)
-                        }.padding()
+                    HStack {
+                        Text("QR코드 추가")
+                            .padding()
+                            .frame(width: UIScreen.main.bounds.width * 1/3, height: 70)
+                            .foregroundColor(.white)
                     }
-                    .background(RoundedRectangle(cornerRadius: 10).foregroundColor(.white))
+                    .background(RoundedRectangle(cornerRadius: 15))
+                    .foregroundColor(Color("becareful"))
                     .shadow(color: .gray, radius: 1, x: 1, y: 1)
+                        
                 }
             }
             .padding()

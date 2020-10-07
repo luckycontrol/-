@@ -11,9 +11,13 @@ import FirebaseAuth
 
 struct Menu: View {
     
+    @EnvironmentObject var tabViewHelper: TabViewHelper
+    
     @ObservedObject var categorySelector: CategorySelector
     
-    @ObservedObject var userHelper: UserHelper
+//    @ObservedObject var userHelper: UserHelper
+    
+    @EnvironmentObject var userHelper: UserHelper
     
     @ObservedObject var cartHelper: CartHelper
     
@@ -21,10 +25,12 @@ struct Menu: View {
         HStack {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 15) {
-                    /* 사용자 버튼 - 클릭 시 로그인 or 회원정보 */
+                    /* 사용자 버튼 - 로그인 or 회원정보 */
                     Button(action: {
                         withAnimation {
-                            self.categorySelector.menu = false
+                            categorySelector.menu = false
+                            
+                            tabViewHelper.isOn = false
                             
                             if self.userHelper.login {
                                 self.userHelper.user_info = true
@@ -78,15 +84,17 @@ struct Menu: View {
                             self.cartHelper.loadCart((Auth.auth().currentUser?.email!)!) { (isSuccess) in
                                 if isSuccess {
                                     withAnimation {
-                                        self.categorySelector.menu = false
-                                        self.categorySelector.cart = true
+                                        tabViewHelper.isOn = false
+                                        categorySelector.menu = false
+                                        categorySelector.cart = true
                                     }
                                 }
                             }
                         } else {
                             withAnimation {
-                                self.categorySelector.menu = false
-                                self.userHelper.login_locate = true
+                                tabViewHelper.isOn = false
+                                categorySelector.menu = false
+                                userHelper.login_locate = true
                             }
                         }
                     }) {
@@ -250,6 +258,6 @@ struct CategoryMenu: View {
 
 struct Menu_Previews: PreviewProvider {
     static var previews: some View {
-        Menu(categorySelector: CategorySelector(), userHelper: UserHelper(), cartHelper: CartHelper())
+        Menu(categorySelector: CategorySelector(), cartHelper: CartHelper())
     }
 }

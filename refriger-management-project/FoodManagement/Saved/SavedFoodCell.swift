@@ -31,21 +31,14 @@ struct SavedFoodCell: View {
     
     @State var deleteAlertState = false
     
+    @State var foodColor: String = ""
+    
     var deleteAlert: Alert {
         Alert(
             title: Text("식료품 삭제"),
             message: Text("선택하신 식료퓸을 삭제하시겠습니까?"),
             primaryButton: .default(Text("삭제"), action: {
-                for f in savedfood {
-                    if f.id == food.id {
-                        managedObjectContext.delete(f)
-                        break
-                    }
-                }
-                
-                do {
-                   try managedObjectContext.save()
-                } catch { }
+                managedObjectContext.delete(food)
             }),
             secondaryButton: .cancel(Text("취소"))
         )
@@ -53,15 +46,13 @@ struct SavedFoodCell: View {
     
     var body: some View {
         VStack {
-            HStack {
-                Image(uiImage: UIImage(data: food.foodImage!)!)
-                    .resizable()
-                    .frame(width: 80, height: 80)
-                    .clipShape(Circle())
-                    .offset(y: -30)
-                    .shadow(color: .green, radius: 1, x: 1, y: 1)
-                    .padding()
-            }
+            Image(food.foodName!)
+                .resizable()
+                .frame(width: 80, height: 80)
+                .clipShape(Circle())
+                .offset(y: -30)
+                .shadow(color: Color(foodColor), radius: 1, x: 1, y: 1)
+                .padding()
             
             VStack(alignment: .leading) {
                 Text("\(food.foodName!)")
@@ -73,8 +64,9 @@ struct SavedFoodCell: View {
         }
         .background(RoundedRectangle(cornerRadius: 15))
         .foregroundColor(.white)
+        .frame(width: UIScreen.main.bounds.width * 1/3)
         .shadow(color: .gray, radius: 1, x: 1, y: 1)
-        .shadow(color: .green, radius: 2, x: 1, y: 1)
+        .shadow(color: Color(foodColor), radius: 2, x: 1, y: 1)
         .padding(20)
         .onTapGesture { }
         .onLongPressGesture(minimumDuration: 0.5) {
@@ -84,14 +76,27 @@ struct SavedFoodCell: View {
         .alert(isPresented: $deleteAlertState, content: {
             deleteAlert
         })
-    }
-}
-
-extension SavedFoodCell {
-      
-    /* 유통기한에따라 색 변환 */
-    func expirationColor() {
-        
+        .onAppear {
+            let expiration = food.expiration!
+            let startDate = Date()
+            
+            let interval = expiration.timeIntervalSince(startDate)
+            
+            let left = Int(interval / 86400)
+            
+            if left >= 7 {
+                foodColor = "fresh"
+            }
+            else if left >= 3 {
+                foodColor = "alert"
+            }
+            else if left >= 1 {
+                foodColor = "becareful"
+            }
+            else {
+                foodColor = "trash"
+            }
+        }
     }
 }
 

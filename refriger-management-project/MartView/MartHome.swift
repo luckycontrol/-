@@ -13,53 +13,32 @@ struct MartHome: View {
     
     @ObservedObject private var categorySelector = CategorySelector()
     
-    @ObservedObject private var userHelper = UserHelper()
+    @EnvironmentObject var userHelper: UserHelper
     
     @ObservedObject private var cartHelper = CartHelper()
     
-    @State private var foodlist_offset = CGSize.zero
+    @State var view = "마트"
     
     var body: some View {
         ZStack {
             /* 메뉴 뷰 */
-            Menu(categorySelector: categorySelector, userHelper: userHelper, cartHelper: cartHelper)
+            Menu(categorySelector: categorySelector, cartHelper: cartHelper)
             
             /* 식자재 리스트 출력 뷰 */
-            FoodList(categorySelector: categorySelector, userHelper: userHelper, cartHelper: cartHelper)
-                .offset(x: categorySelector.menu ? UIScreen.main.bounds.width / 1.5 : self.foodlist_offset.width)
-                .gesture(
-                    DragGesture()
-                        .onChanged({ gesture in
-                            if gesture.translation.width > 0 {
-                                self.foodlist_offset = gesture.translation
-                            }
-                        })
-                        .onEnded({ _ in
-                            if self.foodlist_offset.width >= 150 {
-                                withAnimation {
-                                    self.foodlist_offset.width = 0
-                                    self.categorySelector.menu = true
-                                }
-                            } else {
-                                withAnimation {
-                                    self.foodlist_offset.width = 0
-                                    self.categorySelector.menu = false
-                                }
-                            }
-                        })
-                )
+            FoodList(categorySelector: categorySelector, cartHelper: cartHelper, view: $view    )
+                .offset(x: view == "메뉴" ? UIScreen.main.bounds.width * 3/4 : .zero)
             
             /* 로그인 화면 */
-            Login(userHelper: userHelper)
-                .offset(y: userHelper.login_locate ? 0 : UIScreen.main.bounds.height)
+            Login(view: $view)
+                .offset(y: view == "로그인" ? 0 : UIScreen.main.bounds.height)
             
             /* 유저 정보 화면 */
-            UserInfo(userHelper: userHelper)
-                .offset(y: userHelper.user_info ? 0 : UIScreen.main.bounds.height)
+            UserInfo()
+                .offset(y: view == "유저정보" ? 0 : UIScreen.main.bounds.height)
             
             /* 장바구니 */
-            Cart(categorySelector: categorySelector, userHelper: userHelper, cartHelper: cartHelper)
-                .offset(y: categorySelector.cart ? 0 : UIScreen.main.bounds.height)
+            Cart(categorySelector: categorySelector, cartHelper: cartHelper, view: $view)
+                .offset(y: view == "카트" ? 0 : UIScreen.main.bounds.height)
             
         }
         .accentColor(.black)

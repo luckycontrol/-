@@ -15,54 +15,73 @@ struct FoodList: View {
     
     @ObservedObject var categorySelector: CategorySelector
     
-    @ObservedObject var userHelper: UserHelper
+//    @ObservedObject var userHelper: UserHelper
+    @EnvironmentObject var userHelper: UserHelper
     
     @ObservedObject var cartHelper: CartHelper
     
     @ObservedObject var foodDetailInfo = FoodDetailInfo()
+    
+    @Binding var view: String
+    
+    @State private var foodName = ""
+    @State private var foodCategory = ""
+    @State private var foodType = ""
+    @State private var foodCount = 1
+    @State private var foodPrice = ""
+    @State private var original_foodPrice = ""
 
     var body: some View {
         ZStack {
             VStack {
-                /* 상단바 - 카테고리버튼 / 장바구니버튼 */
-                HStack {
-                    // -- 카테고리 버튼 --
-                    Button(action: {
-                        withAnimation {
-                            self.categorySelector.menu.toggle()
-                        }
-                    }) {
-                        Image(systemName: "list.bullet")
-                            .frame(width: 30, height: 30)
-                    }
-                    Spacer()
-                    // -- 장바구니 버튼 --
-                    Button(action: {
-                        if self.userHelper.login {
-                            self.cartHelper.loadCart((Auth.auth().currentUser?.email!)!) { (isSuccess) in
-                                if isSuccess {
-                                    withAnimation {
-                                        self.categorySelector.cart = true
-                                    }
-                                }
-                            }
-                        } else {
-                            withAnimation {
-                                self.userHelper.login_locate = true
-                            }
-                        }
-                    }) {
-                        Image(systemName: "cart")
-                        .frame(width: 25, height: 25)
-                    }
-                    
-                }
-                .foregroundColor(.black)
-                .padding(.horizontal, 30)
-                .padding(.bottom, 30)
-                
                 /* 음식 리스트 */
                 ScrollView(.vertical, showsIndicators: false) {
+                    /* 상단바 - 카테고리버튼 / 장바구니버튼 */
+                    HStack {
+                        // -- 카테고리 버튼 --
+                        Button(action: {
+                            withAnimation {
+                                if view != "메뉴" {
+                                    view = "메뉴"
+                                    tabViewHelper.isOn = false
+                                } else {
+                                    view = "마트"
+                                    tabViewHelper.isOn = true
+                                }
+                            }
+                        }) {
+                            Image(systemName: "list.bullet")
+                                .frame(width: 30, height: 30)
+                        }
+                        Spacer()
+                        // -- 장바구니 버튼 --
+                        Button(action: {
+                            if self.userHelper.login {
+                                self.cartHelper.loadCart((Auth.auth().currentUser?.email!)!) { (isSuccess) in
+                                    if isSuccess {
+                                        withAnimation {
+                                            view = "카트"
+                                            tabViewHelper.isOn = false
+//                                            self.categorySelector.cart = true
+                                        }
+                                    }
+                                }
+                            } else {
+                                withAnimation {
+                                    view = "로그인"
+                                    tabViewHelper.isOn = false
+                                }
+                            }
+                        }) {
+                            Image(systemName: "cart")
+                            .frame(width: 25, height: 25)
+                        }
+                        
+                    }
+                    .foregroundColor(.black)
+                    .padding(.horizontal, 30)
+                    .padding(.bottom, 15)
+                    .background(Color.clear)
                 
                     /* 카테고리 이미지  */
                     Image("카테고리-" + categorySelector.foodCategory)
@@ -119,16 +138,18 @@ struct FoodList: View {
                                     .foregroundColor(.black)
                                 }
                                 .onTapGesture {
-                                    self.foodDetailInfo.foodName = martfoodData[index].name
-                                    self.foodDetailInfo.foodCategory = martfoodData[index].category
-                                    self.foodDetailInfo.foodType = martfoodData[index].foodType
-                                    self.foodDetailInfo.foodCount = 1
-                                    self.foodDetailInfo.foodPrice = martfoodData[index].price
-                                    self.foodDetailInfo.original_foodPrice = martfoodData[index].price
+                                    foodName = martfoodData[index].name
+                                    foodCategory = martfoodData[index].category
+                                    foodType = martfoodData[index].foodType
+                                    foodCount = 1
+                                    foodPrice = martfoodData[index].price
+                                    original_foodPrice = martfoodData[index].price
                                     
                                     withAnimation {
-                                        self.foodDetailInfo.foodDetailOffset.width = 0
+                                        view = "디테일"
+                                        tabViewHelper.isOn = false
                                     }
+                                    
                                 }
                                 
                             }
@@ -139,33 +160,14 @@ struct FoodList: View {
             
             
             /* 음식 세부사항 뷰 */
-            FoodDetail(userHelper: userHelper, foodDetailInfo: foodDetailInfo)
-                .offset(x: foodDetailInfo.foodDetailOffset.width)
-                .gesture(DragGesture()
-                    .onChanged({ gesture in
-                        if gesture.translation.width > 0 {
-                            self.foodDetailInfo.foodDetailOffset.width = gesture.translation.width
-                        }
-                    })
-                    .onEnded({ _ in
-                        if self.foodDetailInfo.foodDetailOffset.width > 170 {
-                            withAnimation {
-                                self.foodDetailInfo.foodDetailOffset.width = UIScreen.main.bounds.width
-                            }
-                        } else {
-                            withAnimation {
-                                self.foodDetailInfo.foodDetailOffset.width = 0
-                            }
-                        }
-                    })
-                )
-
+            FoodDetail(userHelper: userHelper, foodName: $foodName, foodCategory: $foodCategory, foodType: $foodType, foodCount: $foodCount, foodPrice: $foodPrice, original_foodPrice: $original_foodPrice, view: $view)
+                .offset(x: view == "디테일" ? .zero : UIScreen.main.bounds.width)
         }
     }
 }
 
 struct FoodList_Previews: PreviewProvider {
     static var previews: some View {
-        FoodList(categorySelector: CategorySelector(), userHelper: UserHelper(), cartHelper: CartHelper(), foodDetailInfo: FoodDetailInfo())
+        FoodList(categorySelector: CategorySelector(), cartHelper: CartHelper(), foodDetailInfo: FoodDetailInfo(), view: .constant("마트"))
     }
 }

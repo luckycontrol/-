@@ -26,10 +26,11 @@ struct DragFoodImage: View {
                 .clipShape(Circle())
                 .shadow(color: .gray, radius: 1, x: 1, y: 1)
                 .offset(self.location)
+                .onTapGesture {}
                 .gesture(DragGesture()
                     .onChanged { value in
                         self.location = value.translation
-                        
+
                         print("x: \(self.location.width), y: \(self.location.height)")
                     }
                     .onEnded { _ in

@@ -27,7 +27,7 @@ struct Purchase: View {
     
     var user_email = (Auth.auth().currentUser?.email)!
     
-    /* 결제확인 Alert */
+    // MARK: 결제 Alert
     var purchaseAlert: Alert {
         Alert(
             title: Text("결제하시겠습니까?"),
@@ -42,7 +42,7 @@ struct Purchase: View {
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: true) {
-            /* 배달정보 | 상세주소 */
+            // MARK: 배달정보 - 주소
             if loadUserInfo {
                 VStack(alignment: .leading) {
                     VStack(alignment: .leading) {

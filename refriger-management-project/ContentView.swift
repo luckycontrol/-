@@ -11,14 +11,17 @@ import SwiftUI
 struct ContentView: View {
     
     @EnvironmentObject var tabViewHelper: TabViewHelper
+    @EnvironmentObject var userHelper: UserHelper
     
     var body: some View {
         ZStack {
             Group {
                 if tabViewHelper.view == "식료품관리-선택" {
                     FoodManagementMain()
+                        
                 } else {
                     MartHome()
+                       
                 }
             }
             

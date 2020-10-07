@@ -43,7 +43,7 @@ struct SavedFoodList: View {
                 }
                 Divider().background(Color.gray.opacity(0.7))
             }
-            .padding()
+            .padding(.vertical)
         }
     }
 }
