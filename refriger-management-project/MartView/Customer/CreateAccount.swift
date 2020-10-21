@@ -19,14 +19,12 @@ struct CreateAccount: View {
     
     @State var createAccountDetail = false
     
-    @State var createAccountDetail_offset = CGSize.init(width: UIScreen.main.bounds.width, height: 0)
-    
     var body: some View {
         VStack {
             /* 타이틀 */
             Text("안녕, 나의 냉장고")
                 .font(.largeTitle)
-                .fontWeight(.thin)
+                .fontWeight(.bold)
                 .padding(.vertical, 50)
             
             VStack(alignment: .leading, spacing: 15) {
@@ -106,25 +104,6 @@ struct CreateAccount: View {
         .sheet(isPresented: $createAccountDetail) {
             CreateAccountDetail(id: self.$id, passwd: self.$passwd, message: self.$message, createAccountDetail: self.$createAccountDetail)
         }
-        
-        //            CreateAccountDetail(id: self.$id, passwd: self.$passwd, createAccountDetail_offset: $createAccountDetail_offset)
-        //                .offset(x: createAccountDetail_offset.width)
-        //                .gesture(DragGesture()
-        //                    .onChanged({ gesture in
-        //                        if gesture.translation.width > 0 {
-        //                            self.createAccountDetail_offset.width = gesture.translation.width
-        //                        }
-        //                    })
-        //                    .onEnded({ _ in
-        //                        withAnimation {
-        //                            if self.createAccountDetail_offset.width > 150 {
-        //                                self.createAccountDetail_offset.width = UIScreen.main.bounds.width
-        //                            } else {
-        //                                self.createAccountDetail_offset.width = 0
-        //                            }
-        //                        }
-        //                    })
-        //                )
     }
     
     func dismiss() {

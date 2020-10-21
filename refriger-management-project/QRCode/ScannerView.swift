@@ -12,18 +12,38 @@ struct ScannerView: View {
     
     @Environment(\.managedObjectContext) var managedObjectContext
     
-    @ObservedObject var viewModel: ScannerViewModel
+    @EnvironmentObject var tabViewHelepr: TabViewHelper
+    
+    @ObservedObject var viewModel = ScannerViewModel()
+    
+    @Binding var scannerStatus: Bool
     
     var body: some View {
         ZStack {
-            QrCodeScannerView()
-                .found(r: self.onFoundQRCode)
-                .torchLight(isOn: self.viewModel.torchIsOn)
-                .interval(delay: self.viewModel.scanInterval)
-                .edgesIgnoringSafeArea(.all)
-                
+            if scannerStatus {
+                QrCodeScannerView()
+                    .found(r: self.onFoundQRCode)
+                    .torchLight(isOn: self.viewModel.torchIsOn)
+                    .interval(delay: self.viewModel.scanInterval)
+                    .edgesIgnoringSafeArea(.all)
+            }
             
             VStack {
+                
+                HStack {
+                    Button(action: {
+                        withAnimation {
+                            scannerStatus = false
+                            tabViewHelepr.isOn = true
+                        }
+                    }) {
+                        Image(systemName: "xmark")
+                            .foregroundColor(.black)
+                            .frame(width: 30, height: 30)
+                    }
+                    Spacer()
+                }
+                
                 VStack {
                     Text("QR코드를 스캔해주세요")
                         .font(.subheadline)
@@ -48,6 +68,7 @@ struct ScannerView: View {
             }
             .padding()
         }
+        .offset(y: scannerStatus ? .zero : UIScreen.main.bounds.height)
     }
     
     
@@ -65,7 +86,8 @@ struct ScannerView: View {
         viewModel.getPurchaseFood(order) { isSuccess, foodNames, foodCategory, foodExpirations in
             if isSuccess {
                 
-                viewModel.viewStatus = false
+                scannerStatus = false
+                tabViewHelepr.isOn = true
                 
                 for index in 0 ..< foodNames.count {
                     
@@ -74,7 +96,7 @@ struct ScannerView: View {
                     food.id = UUID()
                     food.foodName = foodNames[index]
                     food.foodType = foodCategory[index]
-                    food.foodImage = UIImage(named: foodNames[index])?.pngData()
+                    food.foodImage = nil
                     food.expiration = foodExpirations[index]
                     
                 }
@@ -99,6 +121,6 @@ struct ScannerView: View {
 
 struct ScannerView_Previews: PreviewProvider {
     static var previews: some View {
-        ScannerView(viewModel: ScannerViewModel())
+        ScannerView(scannerStatus: .constant(false))
     }
 }

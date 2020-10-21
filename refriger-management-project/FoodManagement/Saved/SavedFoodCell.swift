@@ -46,13 +46,23 @@ struct SavedFoodCell: View {
     
     var body: some View {
         VStack {
-            Image(food.foodName!)
-                .resizable()
-                .frame(width: 80, height: 80)
-                .clipShape(Circle())
-                .offset(y: -30)
-                .shadow(color: Color(foodColor), radius: 1, x: 1, y: 1)
-                .padding()
+            if food.foodImage == nil {
+                Image(food.foodName!)
+                    .resizable()
+                    .frame(width: 80, height: 80)
+                    .clipShape(Circle())
+                    .offset(y: -30)
+                    .shadow(color: Color(foodColor), radius: 1, x: 1, y: 1)
+                    .padding()
+            } else {
+                Image(uiImage: UIImage(data: food.foodImage!)!)
+                    .resizable()
+                    .frame(width: 80, height: 80)
+                    .clipShape(Circle())
+                    .offset(y: -30)
+                    .shadow(color: Color(foodColor), radius: 1, x: 1, y: 1)
+                    .padding()
+            }
             
             VStack(alignment: .leading) {
                 Text("\(food.foodName!)")

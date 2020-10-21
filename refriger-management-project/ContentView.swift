@@ -11,7 +11,10 @@ import SwiftUI
 struct ContentView: View {
     
     @EnvironmentObject var tabViewHelper: TabViewHelper
-    @EnvironmentObject var userHelper: UserHelper
+    
+    @EnvironmentObject var userHelper : UserHelper
+    
+    @State var notificationDenied = false
     
     var body: some View {
         ZStack {
@@ -21,7 +24,6 @@ struct ContentView: View {
                         
                 } else {
                     MartHome()
-                       
                 }
             }
             
@@ -31,7 +33,14 @@ struct ContentView: View {
                     TabView()
                 }.edgesIgnoringSafeArea(.bottom)
             }
-            
+        }
+        .onAppear {
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+                if let error = error {
+                    print(error)
+                    notificationDenied = true
+                }
+            }
         }
     }
 }

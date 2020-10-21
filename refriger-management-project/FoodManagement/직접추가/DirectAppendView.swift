@@ -14,22 +14,22 @@ struct DirectAppendView: View {
     
     @Binding var selectedAppendWay: String
     
-    @State var foodImage: UIImage?
+    @State private var foodImage: UIImage?
     
-    @State var foodName: String = ""
+    @State private var foodName: String = ""
     
-    @State var foodType: String = ""
+    @State private var foodType: String = ""
     
-    @State var expiration: Date = Date()
+    @State private var expiration: Date = Date()
     
     let foodCategoryList = ["과일", "채소", "정육", "해산물", "유제품"]
     
-    @State var usingCameraActionSheet = false
+    @State private var usingCameraActionSheet = false
     
-    @State var usingCameraStatus = false
+    @State private var usingCameraStatus = false
     
     /* CameraRoll 사용 설정 - [ 카메라 사용 / 앨범 사용 ] */
-    @State var sourceType: UIImagePickerController.SourceType?
+    @State private var sourceType: UIImagePickerController.SourceType?
     
     /* 식료품 이미지 추가방식을 물어보는 ActionSheet - [ 카메라로 촬영 / 앨범에서 선택 ] */
     var UsingCameraAlert: ActionSheet {
@@ -183,6 +183,7 @@ struct DirectAppendView: View {
             }
             .padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.top)
             .padding(.bottom, UIApplication.shared.windows.first?.safeAreaInsets.bottom)
+            
         }
         .offset(x: selectedAppendWay == "직접추가" ? 0 : UIScreen.main.bounds.width)
     }

@@ -13,6 +13,8 @@ struct UserInfo: View {
     
     @EnvironmentObject var userHelper: UserHelper
     
+    @Binding var view: String
+    
     @State var userInfo_update_arg = ""
     
     @State var userInfo_update_offset = CGSize.init(width: UIScreen.main.bounds.width, height: 0)
@@ -26,7 +28,7 @@ struct UserInfo: View {
                 HStack {
                     Button(action: {
                         withAnimation {
-                            self.userHelper.user_info = false
+                            view = "마트"
                         }
                     }) {
                         Image(systemName: "xmark")
@@ -56,8 +58,8 @@ struct UserInfo: View {
                     // 로그아웃 버튼
                     Button(action: {
                         withAnimation {
-                            self.userHelper.user_info = false
-                            self.userHelper.login = false
+                            view = "마트"
+                            userHelper.login = false
                         }
                     }) {
                         Text("로그아웃")
@@ -174,6 +176,6 @@ struct UserInfoForm: View {
 
 struct UserInfo_Previews: PreviewProvider {
     static var previews: some View {
-        UserInfo()
+        UserInfo(view: .constant("유저정보"))
     }
 }

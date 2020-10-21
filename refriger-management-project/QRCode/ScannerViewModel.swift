@@ -11,7 +11,7 @@ import Foundation
 
 class ScannerViewModel: ObservableObject {
     
-    let scanInterval: Double = 1.0
+    let scanInterval: Double = 5.0
     
     @Published var torchIsOn: Bool = false
     @Published var viewStatus: Bool = false

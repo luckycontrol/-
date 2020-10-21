@@ -15,11 +15,15 @@ struct Menu: View {
     
     @ObservedObject var categorySelector: CategorySelector
     
-//    @ObservedObject var userHelper: UserHelper
-    
     @EnvironmentObject var userHelper: UserHelper
     
-    @ObservedObject var cartHelper: CartHelper
+    @Binding var view: String
+    
+    @Binding var menuFoodCategory: String
+    
+    @Binding var menuFoodType: String
+    
+    @Binding var cartlist: [CartFoodType]
     
     var body: some View {
         HStack {
@@ -28,15 +32,9 @@ struct Menu: View {
                     /* 사용자 버튼 - 로그인 or 회원정보 */
                     Button(action: {
                         withAnimation {
-                            categorySelector.menu = false
-                            
                             tabViewHelper.isOn = false
                             
-                            if self.userHelper.login {
-                                self.userHelper.user_info = true
-                            } else {
-                                self.userHelper.login_locate = true
-                            }
+                            view = "유저정보"
                         }
                     }) {
                         VStack(alignment: .leading) {
@@ -49,7 +47,7 @@ struct Menu: View {
                                 .fontWeight(.bold)
                             
                             if userHelper.login {
-                                Text("\(userHelper.userName) 님")
+                                Text("\(userHelper.userName!) 님")
                                     .font(.system(size: 24))
                                     .fontWeight(.semibold)
                             }
@@ -75,26 +73,26 @@ struct Menu: View {
                     
                     /* 카테고리 메뉴 - 카테고리 버튼 누르면 활성화 */
                     if categorySelector.category {
-                        CategoryMenu(categorySelector: categorySelector)
+                        CategoryMenu(categorySelector: categorySelector, menuFoodCategory: $menuFoodCategory, menuFoodType: $menuFoodType)
                     }
                     
                     /* 장바구니 버튼 - 로그인 됐을때만 활성화 */
                     Button(action: {
                         if self.userHelper.login {
-                            self.cartHelper.loadCart((Auth.auth().currentUser?.email!)!) { (isSuccess) in
+                            CartHelper().loadCart((Auth.auth().currentUser?.email!)!) { (isSuccess, cartlist) in
                                 if isSuccess {
                                     withAnimation {
                                         tabViewHelper.isOn = false
-                                        categorySelector.menu = false
-                                        categorySelector.cart = true
+                                        
+                                        self.cartlist = cartlist
+                                        view = "카트"
                                     }
                                 }
                             }
                         } else {
                             withAnimation {
                                 tabViewHelper.isOn = false
-                                categorySelector.menu = false
-                                userHelper.login_locate = true
+                                view = "로그인"
                             }
                         }
                     }) {
@@ -138,6 +136,10 @@ struct CategoryMenu: View {
     
     @ObservedObject var categorySelector: CategorySelector
     
+    @Binding var menuFoodCategory: String
+    
+    @Binding var menuFoodType: String
+    
     @State var index = 1
     
     var body: some View {
@@ -155,22 +157,22 @@ struct CategoryMenu: View {
             if index == 1 {
                 VStack(alignment: .leading, spacing: 10) {
                     Button(action: {
-                        self.categorySelector.foodCategory = "과일"
-                        self.categorySelector.foodType = "딸기 / 블루베리"
+                        menuFoodCategory = "과일"
+                        menuFoodType = "딸기 / 블루베리"
                     }) {
                         Text("딸기 / 블루베리")
                     }
                     
                     Button(action: {
-                        self.categorySelector.foodCategory = "과일"
-                        self.categorySelector.foodType = "감귤 / 한라봉"
+                        menuFoodCategory = "과일"
+                        menuFoodType = "감귤 / 한라봉"
                     }) {
                         Text("감귤 / 한라봉")
                     }
                     
                     Button(action: {
-                        self.categorySelector.foodCategory = "과일"
-                        self.categorySelector.foodType = "사과"
+                        menuFoodCategory = "과일"
+                        menuFoodType = "사과"
                     }) {
                         Text("사과")
                     }
@@ -191,22 +193,22 @@ struct CategoryMenu: View {
             if index == 2 {
                 VStack(alignment: .leading, spacing: 10) {
                     Button(action: {
-                        self.categorySelector.foodCategory = "채소"
-                        self.categorySelector.foodType = "고구마 / 감자"
+                        menuFoodCategory = "채소"
+                        menuFoodType = "고구마 / 감자"
                     }) {
                         Text("고구마 / 감자")
                     }
                     
                     Button(action: {
-                        self.categorySelector.foodCategory = "채소"
-                        self.categorySelector.foodType = "상추 / 깻잎"
+                        menuFoodCategory = "채소"
+                        menuFoodType = "상추 / 깻잎"
                     }) {
                         Text("상추 / 깻잎")
                     }
                     
                     Button(action: {
-                        self.categorySelector.foodCategory = "채소"
-                        self.categorySelector.foodType = "시금치 / 부추"
+                        menuFoodCategory = "채소"
+                        menuFoodType = "시금치 / 부추"
                     }) {
                         Text("시금치 / 부추")
                     }
@@ -227,22 +229,22 @@ struct CategoryMenu: View {
             if index == 3 {
                 VStack(alignment: .leading, spacing: 10) {
                     Button(action: {
-                        self.categorySelector.foodCategory = "정육"
-                        self.categorySelector.foodType = "소고기"
+                        menuFoodCategory = "정육"
+                        menuFoodType = "소고기"
                     }) {
                         Text("소고기")
                     }
                     
                     Button(action: {
-                        self.categorySelector.foodCategory = "정육"
-                        self.categorySelector.foodType = "돼지고기"
+                        menuFoodCategory = "정육"
+                        menuFoodType = "돼지고기"
                     }) {
                         Text("돼지고기")
                     }
                     
                     Button(action: {
-                        self.categorySelector.foodCategory = "정육"
-                        self.categorySelector.foodType = "닭 / 오리고기"
+                        menuFoodCategory = "정육"
+                        menuFoodType = "닭 / 오리고기"
                     }) {
                         Text("닭 / 오리고기")
                     }
@@ -258,6 +260,6 @@ struct CategoryMenu: View {
 
 struct Menu_Previews: PreviewProvider {
     static var previews: some View {
-        Menu(categorySelector: CategorySelector(), cartHelper: CartHelper())
+        Menu(categorySelector: CategorySelector(), view: .constant("메뉴"), menuFoodCategory: .constant("과일"), menuFoodType: .constant("딸기"), cartlist: .constant([]))
     }
 }

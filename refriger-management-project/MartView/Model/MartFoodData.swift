@@ -59,9 +59,6 @@ struct User: Hashable {
 
 class CartHelper: ObservableObject {
     
-    /* 장바구니 버튼 눌릴 때 */
-    @Published var cartlist: [CartFoodType] = []
-    
     /* 카트에 식료품 추가하기 */
     func addCart(_ email: String, _ martfood: CartFoodType, completion: @escaping (Bool) -> Void) {
         firebase_db
@@ -74,28 +71,6 @@ class CartHelper: ObservableObject {
             ])
         
         completion(true)
-    }
-    
-    /* 해당 식자재의 인덱스 반환 */
-    func findFoodinCart(_ foodName: String) -> Int {
-        var findIndex = 0
-        
-        for index in 0 ..< cartlist.count {
-            if cartlist[index].foodName == foodName {
-                findIndex = index
-                break
-            }
-        }
-        
-        return findIndex
-    }
-    
-    /* 카트에서 해당 식료품 제거하기 */
-    func removeCart(_ email: String, _ foodName: String) {
-        let foodIndex = findFoodinCart(foodName)
-        
-        cartlist.remove(at: foodIndex)
-        editCartDB(email, foodName)
     }
     
     /* 변경된 카트내용 db에 반영 */
@@ -144,7 +119,7 @@ class CartHelper: ObservableObject {
     }
     
     /* Purchase DB 주문넣기 */
-    func insertOrderInPurchase(_ userInfo: User, _ email: String, _ totalPrice: String, _ orderCount: Int = 0, _ orderArr: Array<String> = [], completion: @escaping (Bool) -> Void) {
+    func insertOrderInPurchase(_ userInfo: User, _ email: String, _ totalPrice: String, _ cartlist: [CartFoodType], _ orderCount: Int = 0, _ orderArr: Array<String> = []) {
         var foodNames: [String] = []
         var foodCategory: [String] = []
         var foodCounts: [Int] = []
@@ -189,12 +164,10 @@ class CartHelper: ObservableObject {
                     document.reference.delete()
                 }
         }
-        
-        completion(true)
     }
     
     /* 카트에 있는 식자재 구매 */
-    func purchase(_ email: String, _ totalPrice: String, _ userInfo: User) {
+    func purchase(_ email: String, _ totalPrice: String, _ userInfo: User, _ cartlist: [CartFoodType], completion: @escaping (Bool) -> Void) {
         
         /* Purchase에 사용자 이메일이 있는지 확인 */
         checkUserInPurchase(email) { purchase_check in
@@ -202,27 +175,21 @@ class CartHelper: ObservableObject {
                 /* 이메일에서 주문횟수를 가져온다. */
                 self.getOrderCount(email) { orderCount, orderArr in
                     /* 주문을 넣는다. */
-                    self.insertOrderInPurchase(userInfo, email, totalPrice, orderCount, orderArr) { isSuccess in
-                        if isSuccess {
-                            self.cartlist.removeAll()
-                        }
-                    }
+                    self.insertOrderInPurchase(userInfo, email, totalPrice, cartlist, orderCount, orderArr)
+                    
                 }
             } else {
-                self.insertOrderInPurchase(userInfo, email, totalPrice) { isSuccess in
-                    if isSuccess {
-                        self.cartlist.removeAll()
-                    }
-                }
+                self.insertOrderInPurchase(userInfo, email, totalPrice, cartlist)
             }
         }
+        
+        completion(true)
     }
     
     /* 식자재 불러오기 */
-    func loadCart(_ email: String, completion: @escaping (Bool) -> Void) {
+    func loadCart(_ email: String, completion: @escaping (Bool, [CartFoodType]) -> Void) {
         
-        /* 초기화 */
-        self.cartlist = []
+        var cartlist: [CartFoodType] = []
         
         firebase_db
             .collection("User").document(email)
@@ -231,7 +198,7 @@ class CartHelper: ObservableObject {
                     print(error)
                 } else {
                     for document in snapShot!.documents {
-                        self.cartlist.append(CartFoodType(
+                        cartlist.append(CartFoodType(
                             foodName: document.data()["foodName"] as! String,
                             foodCategory: document.data()["foodCategory"] as! String,
                             foodCount: document.data()["foodCount"] as! Int,
@@ -239,7 +206,7 @@ class CartHelper: ObservableObject {
                         )
                     }
                     
-                    completion(true)
+                    completion(true, cartlist)
                 }
         }
     }

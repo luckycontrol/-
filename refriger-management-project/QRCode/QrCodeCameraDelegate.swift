@@ -10,7 +10,7 @@ import Foundation
 import AVFoundation
 
 class QrCodeCameraDelegate: NSObject, AVCaptureMetadataOutputObjectsDelegate {
-    var scanInterval: Double = 1.0
+    var scanInterval: Double = 7.0
     var lastTime = Date(timeIntervalSince1970: 0)
     
     var onResult: (String) -> Void = { _ in }

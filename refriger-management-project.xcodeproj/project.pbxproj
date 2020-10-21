@@ -48,6 +48,7 @@
 		69236B35252984B8000B04C0 /* QrCodeCameraDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69236B34252984B7000B04C0 /* QrCodeCameraDelegate.swift */; };
 		69236B38252989D1000B04C0 /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69236B37252989D1000B04C0 /* CameraPreview.swift */; };
 		69236B3B25298E34000B04C0 /* QrCodeScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69236B3A25298E34000B04C0 /* QrCodeScannerView.swift */; };
+		694E48022535EDAB00A13F3F /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694E48012535EDAB00A13F3F /* CameraView.swift */; };
 		69E18E602520B74D008892B9 /* DeleteSavedFood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E18E5F2520B74D008892B9 /* DeleteSavedFood.swift */; };
 		CD86EDE3CC65EB38478DBE19 /* Pods_refriger_management_project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89D25FE82CE32A598A55DDAE /* Pods_refriger_management_project.framework */; };
 /* End PBXBuildFile section */
@@ -98,6 +99,7 @@
 		69236B34252984B7000B04C0 /* QrCodeCameraDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrCodeCameraDelegate.swift; sourceTree = "<group>"; };
 		69236B37252989D1000B04C0 /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
 		69236B3A25298E34000B04C0 /* QrCodeScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrCodeScannerView.swift; sourceTree = "<group>"; };
+		694E48012535EDAB00A13F3F /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		69E18E5F2520B74D008892B9 /* DeleteSavedFood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteSavedFood.swift; sourceTree = "<group>"; };
 		793048D7B14C511180979586 /* Pods-refriger-management-project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-refriger-management-project.release.xcconfig"; path = "Target Support Files/Pods-refriger-management-project/Pods-refriger-management-project.release.xcconfig"; sourceTree = "<group>"; };
 		89D25FE82CE32A598A55DDAE /* Pods_refriger_management_project.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_refriger_management_project.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,6 +155,7 @@
 			children = (
 				5DE60EF92511003A00CB47D9 /* DirectAppendView.swift */,
 				5DE60EFB251244E000CB47D9 /* UsingCameraRoll.swift */,
+				694E48012535EDAB00A13F3F /* CameraView.swift */,
 			);
 			name = Direct;
 			path = "직접추가";
@@ -430,6 +433,7 @@
 				5DAA3B2E25010213009F3E5B /* Purchase.swift in Sources */,
 				69236B2E25297255000B04C0 /* ScannerViewModel.swift in Sources */,
 				69236B3B25298E34000B04C0 /* QrCodeScannerView.swift in Sources */,
+				694E48022535EDAB00A13F3F /* CameraView.swift in Sources */,
 				5DF5406624F1159F00B63028 /* MartFoodData.swift in Sources */,
 				69236B38252989D1000B04C0 /* CameraPreview.swift in Sources */,
 				69236B3225297669000B04C0 /* ScannerView.swift in Sources */,

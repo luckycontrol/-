@@ -72,17 +72,27 @@ struct Login: View {
                 .padding(.horizontal, 15)
                 .padding(.bottom, 50)
                 
-                /* 로그인 버튼 */
+                //MARK: 로그인 버튼
                 Button(action: {
                     Auth.auth().signIn(withEmail: self.id, password: self.passwd) { authResult, error in
-                        if error != nil {
-                            print("error")
+                        if let error = error {
+                           print(error)
                         } else {
                             // 로그인 성공
-                            userHelper.login = true
-                            UINotificationFeedbackGenerator().notificationOccurred(.success)
-                            withAnimation {
-                                view = "마트"
+                            userHelper.getUserInfo(id: self.id) { isSuccess, address, hp, name in
+                                
+                                if isSuccess {
+                                    userHelper.userEmail = self.id
+                                    userHelper.userAddress = address
+                                    userHelper.userHp = hp
+                                    userHelper.userName = name
+                                    
+                                    userHelper.login = true
+                                    UINotificationFeedbackGenerator().notificationOccurred(.success)
+                                    withAnimation {
+                                        view = "마트"
+                                    }
+                                }
                             }
                         }
                     }

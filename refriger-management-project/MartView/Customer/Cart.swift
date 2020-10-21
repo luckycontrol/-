@@ -14,17 +14,11 @@ struct Cart: View {
     
     @EnvironmentObject var tabViewHelper: TabViewHelper
     
-    @Environment(\.presentationMode) var presentationMode
-    
-    @ObservedObject var categorySelector: CategorySelector
-    
     @EnvironmentObject var userHelper: UserHelper
-    
-    @ObservedObject var cartHelper: CartHelper
     
     @Binding var view: String
     
-    @State var foodcell_offset: CGSize = .zero
+    @Binding var cartlist: [CartFoodType]
     
     @State var cartEdit = false
     
@@ -47,19 +41,19 @@ struct Cart: View {
         NavigationView {
             VStack {
                 /* 장바구니 리스트 출력 */
-                if cartHelper.cartlist.count == 0 {
+                if cartlist.count == 0 {
                     Text("장바구니가 비었습니다.")
                         .font(.largeTitle)
                         .fontWeight(.bold)
                 } else {
                     ScrollView(.vertical, showsIndicators: false) {
                         /* 리스트 출력 */
-                        ForEach(cartHelper.cartlist, id: \.self) {
-                            Cart_FoodCell(cartHelper: self.cartHelper, cartEdit: self.$cartEdit, cartFoodInfo: $0)
+                        ForEach(cartlist, id: \.self) {
+                            Cart_FoodCell(cartEdit: self.$cartEdit, cartlist: $cartlist, cartFoodInfo: $0)
                         }
                         
                         /* 결제버튼 */
-                        NavigationLink(destination: Purchase(cartHelper: cartHelper), isActive: self.$purchaseStatus) {
+                        NavigationLink(destination: Purchase(cartlist: $cartlist), isActive: self.$purchaseStatus) {
                             Button(action: { self.purchaseAlertStatus = true }) {
                                 HStack {
                                     Text("구매하기")
@@ -109,9 +103,9 @@ struct Cart: View {
 /* 카트에 저장된 식재료 셀 */
 struct Cart_FoodCell: View {
     
-    @ObservedObject var cartHelper: CartHelper
-    
     @Binding var cartEdit: Bool
+    
+    @Binding var cartlist: [CartFoodType]
     
     let cartFoodInfo: CartFoodType
     
@@ -121,8 +115,13 @@ struct Cart_FoodCell: View {
                 /* 셀 삭제 버튼 */
                 if cartEdit {
                     Button(action: {
+                        for index in 0 ..< cartlist.count {
+                            if cartlist[index].foodName == cartFoodInfo.foodName {
+                                cartlist.remove(at: index)
+                            }
+                        }
                         withAnimation {
-                            self.cartHelper.removeCart((Auth.auth().currentUser?.email!)!, self.cartFoodInfo.foodName)
+                            CartHelper().editCartDB((Auth.auth().currentUser?.email)!, cartFoodInfo.foodName)
                         }
                     }) {
                         Image(systemName: "minus.rectangle")
@@ -159,6 +158,6 @@ struct Cart_FoodCell: View {
 
 struct Cart_Previews: PreviewProvider {
     static var previews: some View {
-        Cart(categorySelector: CategorySelector(), cartHelper: CartHelper(), view: .constant("카트"))
+        Cart(view: .constant("카트"), cartlist: .constant([]))
     }
 }

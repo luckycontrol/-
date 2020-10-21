@@ -12,17 +12,16 @@ import FirebaseAuth
 struct FoodList: View {
     
     @EnvironmentObject var tabViewHelper: TabViewHelper
-    
-    @ObservedObject var categorySelector: CategorySelector
-    
-//    @ObservedObject var userHelper: UserHelper
+
     @EnvironmentObject var userHelper: UserHelper
     
-    @ObservedObject var cartHelper: CartHelper
-    
-    @ObservedObject var foodDetailInfo = FoodDetailInfo()
-    
     @Binding var view: String
+    
+    @Binding var menuFoodCategory: String
+    
+    @Binding var menuFoodType: String
+    
+    @Binding var cartlist: [CartFoodType]
     
     @State private var foodName = ""
     @State private var foodCategory = ""
@@ -57,12 +56,13 @@ struct FoodList: View {
                         // -- 장바구니 버튼 --
                         Button(action: {
                             if self.userHelper.login {
-                                self.cartHelper.loadCart((Auth.auth().currentUser?.email!)!) { (isSuccess) in
+                                CartHelper().loadCart((Auth.auth().currentUser?.email!)!) { (isSuccess, cartlist) in
                                     if isSuccess {
+                                        self.cartlist = cartlist
+                                        
                                         withAnimation {
                                             view = "카트"
                                             tabViewHelper.isOn = false
-//                                            self.categorySelector.cart = true
                                         }
                                     }
                                 }
@@ -84,7 +84,7 @@ struct FoodList: View {
                     .background(Color.clear)
                 
                     /* 카테고리 이미지  */
-                    Image("카테고리-" + categorySelector.foodCategory)
+                    Image("카테고리-" + menuFoodCategory)
                         .resizable()
                         .scaledToFill()
                         .frame(width: UIScreen.main.bounds.width - 50, height: 150)
@@ -93,7 +93,7 @@ struct FoodList: View {
                             VStack {
                                 Spacer()
                                 HStack {
-                                    Text("\(categorySelector.foodCategory)")
+                                    Text("\(menuFoodCategory)")
                                         .font(.title).foregroundColor(.white)
                                         .fontWeight(.semibold)
                 
@@ -117,7 +117,7 @@ struct FoodList: View {
                     /* 식자재 리스트 출력 */
                     ForEach(0 ..< martfoodData.count, id: \.self) { index in
                         VStack {
-                            if martfoodData[index].foodType == self.categorySelector.foodType {
+                            if martfoodData[index].foodType == menuFoodType {
                                 VStack {
                                     Image(martfoodData[index].name)
                                         .renderingMode(.original)
@@ -168,6 +168,6 @@ struct FoodList: View {
 
 struct FoodList_Previews: PreviewProvider {
     static var previews: some View {
-        FoodList(categorySelector: CategorySelector(), cartHelper: CartHelper(), foodDetailInfo: FoodDetailInfo(), view: .constant("마트"))
+        FoodList(view: .constant("마트"), menuFoodCategory: .constant("과일"), menuFoodType: .constant("딸기"), cartlist: .constant([]))
     }
 }

@@ -13,7 +13,7 @@ struct Purchase: View {
     
     @Environment(\.presentationMode) var presentationMode
     
-    @ObservedObject var cartHelper: CartHelper
+    @Binding var cartlist: [CartFoodType]
     
     @State private var loadUserInfo = false
     
@@ -32,7 +32,9 @@ struct Purchase: View {
         Alert(
             title: Text("결제하시겠습니까?"),
             primaryButton: .default(Text("결제"), action: {
-                cartHelper.purchase(user_email, totalPrice, userInfo)
+                CartHelper().purchase(user_email, totalPrice, userInfo, cartlist) { isSuccess in
+                    cartlist.removeAll()
+                }
                 UINotificationFeedbackGenerator().notificationOccurred(.success)
                 presentationMode.wrappedValue.dismiss()
             }),
@@ -178,22 +180,22 @@ struct Purchase: View {
         var totalPrice = 0
         
         /* 콤마제거 -> 갯수만큼 곱 -> 콤마삽입 */
-        for food in cartHelper.cartlist {
+        for food in cartlist {
             var str_food = food.foodPrice
             
-            str_food = cartHelper.sub_comma(str_food)
+            str_food = CartHelper().sub_comma(str_food)
             
             totalPrice += Int(str_food)!
         }
         
-        return cartHelper.add_comma(String(totalPrice))
+        return CartHelper().add_comma(String(totalPrice))
     }
 }
 
 struct Purchase_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            Purchase(cartHelper: CartHelper())
+            Purchase(cartlist: .constant([]))
         }
     }
 }

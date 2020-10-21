@@ -19,8 +19,6 @@ struct FoodManagementMain: View {
     
     @ObservedObject var savedFoodHelper = SavedFoodHelper()
     
-    @ObservedObject var viewModel = ScannerViewModel()
-    
     @State private var editSavedFood = false
     
     @State private var isChangeSortingWay = false
@@ -28,6 +26,8 @@ struct FoodManagementMain: View {
     @State private var changeSortingWay = "일반"
     
     @State private var selectedMenu = ""
+    
+    @State private var scannerStatus = false
     
     private let foodTypeList = ["과일", "채소", "정육", "해산물", "유제품", "기타"]
     
@@ -62,7 +62,7 @@ struct FoodManagementMain: View {
                         
                         /* 직접추가 / QR코드 추가 */
                         if editSavedFood {
-                            FoodManagementMenu(selectedMenu: $selectedMenu, viewModel: viewModel)
+                            FoodManagementMenu(selectedMenu: $selectedMenu, scannerStatus: $scannerStatus)
                         }
                         
                         SavedFoodList(savedFoodHelper: savedFoodHelper, foodType: "과일")
@@ -106,7 +106,7 @@ struct FoodManagementMain: View {
                     
                     /* 직접추가 / QR코드 추가 */
                     if editSavedFood {
-                        FoodManagementMenu(selectedMenu: $selectedMenu, viewModel: viewModel)
+                        FoodManagementMenu(selectedMenu: $selectedMenu, scannerStatus: $scannerStatus)
                     }
                     
                     Spacer()
@@ -121,10 +121,39 @@ struct FoodManagementMain: View {
 
             /* 직접추가 뷰 */
             SelfAppendView(selectedMenu: $selectedMenu)
+            
+            /* QR코드 스캔 뷰 */
+            ScannerView(scannerStatus: $scannerStatus)
         }
-        .sheet(isPresented: $viewModel.viewStatus, content: {
-                ScannerView(viewModel: viewModel)
-        })
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) { _ in
+
+            var noti = false
+
+            for food in savedfood {
+                let foodExpiration = food.expiration!
+                let interval = foodExpiration.timeIntervalSince(Date())
+                let left = interval / 86400
+
+                if left <= 3 {
+                    noti = true
+                }
+            }
+
+            if noti {
+                let content = UNMutableNotificationContent()
+                content.title = "식료품 유통기한을 확인해주세요."
+                content.title = "유통기한이 3일 이하인 식료품들이 있어요."
+                content.sound = UNNotificationSound.default
+
+                var dateComponents = DateComponents()
+                dateComponents.hour = 8
+
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+                let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+
+                UNUserNotificationCenter.current().add(request)
+            }
+        }
     }
 }
 
@@ -135,7 +164,7 @@ struct FoodManagementMenu: View {
     
     @Binding var selectedMenu: String
     
-    @ObservedObject var viewModel: ScannerViewModel
+    @Binding var scannerStatus: Bool
     
     var body: some View {
         VStack {
@@ -143,8 +172,8 @@ struct FoodManagementMenu: View {
                 /* 직접추가 버튼 */
                 Button(action: {
                     withAnimation {
-                        self.selectedMenu = "직접추가"
-                        self.tabViewHelper.isOn = false
+                        selectedMenu = "직접추가"
+                        tabViewHelper.isOn = false
                     }
                 }) {
                     HStack {
@@ -162,7 +191,8 @@ struct FoodManagementMenu: View {
                 /* QR코드추가 버튼 */
                 Button(action: {
                     withAnimation {
-                        self.viewModel.viewStatus = true
+                        scannerStatus = true
+                        tabViewHelper.isOn = false
                     }
                 }) {
                     HStack {
