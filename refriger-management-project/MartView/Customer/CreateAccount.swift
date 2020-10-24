@@ -30,8 +30,7 @@ struct CreateAccount: View {
             VStack(alignment: .leading, spacing: 15) {
                 Text("계정을 생성하시는건가요?")
                     .font(.system(size: 22))
-                    .fontWeight(.thin)
-                    .foregroundColor(Color.black.opacity(0.8))
+                    .fontWeight(.bold)
                 
                 /* 아이디 입력 폼 */
                 HStack {
@@ -42,12 +41,9 @@ struct CreateAccount: View {
                     
                     VStack {
                         TextField("이메일 형식으로 입력해주세요.", text: $id)
-                        Divider().padding(.trailing, 15)
+                        Divider()
                     }
                 }
-                .background(RoundedRectangle(cornerRadius: 15).fill(Color.white))
-                .shadow(color: .gray, radius: 2, x: 2, y: 2)
-                .shadow(color: Color.gray.opacity(0.5), radius: 1, x: -1, y: 1)
                 
                 /* 비밀번호 입력 폼 */
                 HStack {
@@ -58,12 +54,9 @@ struct CreateAccount: View {
                     
                     VStack {
                         SecureField("6자 이상을 입력해주세요.", text: $passwd)
-                        Divider().padding(.trailing, 15)
+                        Divider()
                     }
                 }
-                .background(RoundedRectangle(cornerRadius: 15).fill(Color.white))
-                .shadow(color: .gray, radius: 2, x: 2, y: 2)
-                .shadow(color: Color.gray.opacity(0.5), radius: 1, x: -1, y: 1)
             }
             .padding(.horizontal, 15)
             
@@ -88,14 +81,12 @@ struct CreateAccount: View {
                     }
                 }
             }) {
-                HStack {
-                    Text("회원가입")
-                }
-                .frame(width: 300, height: 50)
-                .background(Color("ButtonColor"))
-                .foregroundColor(.black)
-                .shadow(color: .gray, radius: 2, x: 2, y: 2)
-                .shadow(color: Color.gray.opacity(0.5), radius: 1, x: -1, y: -1)
+                Text("회원가입")
+                    .foregroundColor(.white)
+                    .frame(width: UIScreen.main.bounds.width * 4/5, height: 50)
+                    .background(RoundedRectangle(cornerRadius: 15).foregroundColor(Color("CategoryColor")))
+                    .shadow(radius: 3)
+                
             }.disabled(id.count == 0 || passwd.count == 0)
             
             Spacer()
